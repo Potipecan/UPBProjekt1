@@ -29,13 +29,33 @@ namespace UPBProjekt1
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.AllPostLB = new System.Windows.Forms.ListBox();
+            this.SuspendLayout();
+            // 
+            // AllPostLB
+            // 
+            this.AllPostLB.FormattingEnabled = true;
+            this.AllPostLB.ItemHeight = 16;
+            this.AllPostLB.Location = new System.Drawing.Point(13, 13);
+            this.AllPostLB.Name = "AllPostLB";
+            this.AllPostLB.Size = new System.Drawing.Size(429, 500);
+            this.AllPostLB.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 519);
+            this.Controls.Add(this.AllPostLB);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ListBox AllPostLB;
     }
 }
 
