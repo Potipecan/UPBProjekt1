@@ -9,16 +9,13 @@ namespace Database
 {
     public class DatabaseManager
     {
-        const string _host = "rogue.db.elephantsql.com";
-        const string _user = "hxsncoqk";
-        const string _pass = "XaZ8iDDa0PccwESDkH7g9zxwVMT4jdYp";
-        const string _dbname = "hxsncoqk";
+        
         string connString;
         private NpgsqlConnection conn;
 
         public DatabaseManager()
         {
-            connString = $"Host={_host};Username={_user};Password={_pass};Database={_dbname}";
+            connString = $"Host={Const.Host};Username={Const.User};Password={Const.Pass};Database={Const.DBName}";
             conn = new NpgsqlConnection(connString);
         }
 
