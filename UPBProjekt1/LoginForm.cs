@@ -11,20 +11,22 @@ using Database;
 
 namespace UPBProjekt1
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
         DatabaseManager DB;
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
 
             DB = new DatabaseManager();
 
-            Task.Run(async () =>
-            {
-                var list = await DB.GetAllPost();
-                list.ForEach(i => AllPostLB.Items.Add(i.ToString()));
-            }).Wait();
+            //Task.Run(async () =>
+            //{
+            //    var list = await DB.GetAllPost();
+            //    list.ForEach(i => AllPostLB.Items.Add(i.ToString()));
+            //}).Wait();
+
+
         }
     }
 }
