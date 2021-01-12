@@ -16,7 +16,28 @@ namespace Database
             columns = new Dictionary<string, string>();
             columns.Add(nameof(ID), "id");
         }
+
+        public override string ToString()
+        {
+            string res = "";
+            foreach(var p in GetType().GetProperties())
+            {
+                res += p.GetValue(this).ToString() + ";";
+            }
+            return res.TrimEnd(';');
+        }
+
+        public virtual string GetColumns()
+        {
+            string res = "";
+            foreach(var col in columns)
+            {
+                res += col.Value + ", ";
+            }
+            return res.TrimEnd(';');
+        }
     }
+
     public class Kraj : Table
     {
         public string Name { get; set; }
@@ -34,11 +55,6 @@ namespace Database
             columns.Add(nameof(PostID), "posta");
             columns.Add(nameof(Abbr), "kratica");
             
-        }
-
-        public override string ToString()
-        {
-            return $"{Name};{PostID};{Abbr}";
         }
     }
 
