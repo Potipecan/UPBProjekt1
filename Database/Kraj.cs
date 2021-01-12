@@ -77,9 +77,9 @@ namespace Database
             string email,
             string address,
             int reg_id,
-            int proj_num,
-            int comp_num,
             string pass,
+            int proj_num = 0,
+            int comp_num = 0,            
             int id = -1
             ) : base(id)
         {
