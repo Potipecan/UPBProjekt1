@@ -28,5 +28,24 @@ namespace UPBProjekt1
 
 
         }
+
+        private async void LoginButton_Click(object sender, EventArgs e)
+        {
+            if (UsernameTB.Text != "" && PasswordTB.Text != "")
+            {
+                var user = await DB.GetUser(UsernameTB.Text, PasswordTB.Text);
+                if (user != null)
+                {
+                    //TO DO: Transition to next form
+                }
+                else MessageBox.Show("Login failed.\nCheck your info.");
+            }
+            else MessageBox.Show("Input all fields.");
+        }
+
+        private void QuitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

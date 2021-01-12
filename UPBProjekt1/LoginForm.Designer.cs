@@ -30,13 +30,13 @@ namespace UPBProjekt1
         private void InitializeComponent()
         {
             this.LoginGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.UsernameTB = new System.Windows.Forms.TextBox();
-            this.PasswordTB = new System.Windows.Forms.TextBox();
-            this.LoginButton = new System.Windows.Forms.Button();
-            this.QuitButton = new System.Windows.Forms.Button();
             this.RegisterButton = new System.Windows.Forms.Button();
+            this.QuitButton = new System.Windows.Forms.Button();
+            this.LoginButton = new System.Windows.Forms.Button();
+            this.PasswordTB = new System.Windows.Forms.TextBox();
+            this.UsernameTB = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.LoginGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,15 +56,48 @@ namespace UPBProjekt1
             this.LoginGroupBox.TabStop = false;
             this.LoginGroupBox.Text = "Login Info";
             // 
-            // label1
+            // RegisterButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Username:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.RegisterButton.Location = new System.Drawing.Point(13, 144);
+            this.RegisterButton.Name = "RegisterButton";
+            this.RegisterButton.Size = new System.Drawing.Size(125, 27);
+            this.RegisterButton.TabIndex = 6;
+            this.RegisterButton.Text = "Register";
+            this.RegisterButton.UseVisualStyleBackColor = true;
+            // 
+            // QuitButton
+            // 
+            this.QuitButton.Location = new System.Drawing.Point(155, 107);
+            this.QuitButton.Name = "QuitButton";
+            this.QuitButton.Size = new System.Drawing.Size(130, 31);
+            this.QuitButton.TabIndex = 5;
+            this.QuitButton.Text = "Quit";
+            this.QuitButton.UseVisualStyleBackColor = true;
+            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
+            // 
+            // LoginButton
+            // 
+            this.LoginButton.Location = new System.Drawing.Point(13, 107);
+            this.LoginButton.Name = "LoginButton";
+            this.LoginButton.Size = new System.Drawing.Size(125, 31);
+            this.LoginButton.TabIndex = 4;
+            this.LoginButton.Text = "Log in";
+            this.LoginButton.UseVisualStyleBackColor = true;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
+            // 
+            // PasswordTB
+            // 
+            this.PasswordTB.Location = new System.Drawing.Point(89, 63);
+            this.PasswordTB.Name = "PasswordTB";
+            this.PasswordTB.Size = new System.Drawing.Size(196, 22);
+            this.PasswordTB.TabIndex = 3;
+            // 
+            // UsernameTB
+            // 
+            this.UsernameTB.Location = new System.Drawing.Point(89, 35);
+            this.UsernameTB.Name = "UsernameTB";
+            this.UsernameTB.Size = new System.Drawing.Size(196, 22);
+            this.UsernameTB.TabIndex = 2;
             // 
             // label2
             // 
@@ -76,46 +109,15 @@ namespace UPBProjekt1
             this.label2.Text = "Password:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // UsernameTB
+            // label1
             // 
-            this.UsernameTB.Location = new System.Drawing.Point(89, 35);
-            this.UsernameTB.Name = "UsernameTB";
-            this.UsernameTB.Size = new System.Drawing.Size(196, 22);
-            this.UsernameTB.TabIndex = 2;
-            // 
-            // PasswordTB
-            // 
-            this.PasswordTB.Location = new System.Drawing.Point(89, 63);
-            this.PasswordTB.Name = "PasswordTB";
-            this.PasswordTB.Size = new System.Drawing.Size(196, 22);
-            this.PasswordTB.TabIndex = 3;
-            // 
-            // LoginButton
-            // 
-            this.LoginButton.Location = new System.Drawing.Point(13, 107);
-            this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(125, 31);
-            this.LoginButton.TabIndex = 4;
-            this.LoginButton.Text = "Log in";
-            this.LoginButton.UseVisualStyleBackColor = true;
-            // 
-            // QuitButton
-            // 
-            this.QuitButton.Location = new System.Drawing.Point(155, 107);
-            this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(130, 31);
-            this.QuitButton.TabIndex = 5;
-            this.QuitButton.Text = "Quit";
-            this.QuitButton.UseVisualStyleBackColor = true;
-            // 
-            // RegisterButton
-            // 
-            this.RegisterButton.Location = new System.Drawing.Point(13, 144);
-            this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(125, 27);
-            this.RegisterButton.TabIndex = 6;
-            this.RegisterButton.Text = "Register";
-            this.RegisterButton.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Username:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LoginForm
             // 
