@@ -39,5 +39,26 @@ namespace Database
 
             return result;
         }
+
+        public async Task<User> GetUser(string username, string password)
+        {
+            User res = null;
+            await conn.OpenAsync();
+            string command = "SELECT get_user(@uname, @pass);";
+            using(var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("uname", username);
+                com.Parameters.AddWithValue("pass", password);
+                var r = await com.ExecuteReaderAsync();
+
+                if(await r.ReadAsync())
+                {
+                    res = new User(r.GetString(1), r.GetString(2), r.GetString(3), r.GetString(4), r.GetString(5), r.GetInt32(6), r.GetInt32(7), r.GetInt32(8), r.GetInt32(0));
+                }
+                
+            }
+
+            return res;
+        }
     }
 }
