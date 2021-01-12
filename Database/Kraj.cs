@@ -23,7 +23,8 @@ namespace Database
             string res = "";
             foreach(var p in GetType().GetProperties())
             {
-                res += p.GetValue(this).ToString() + ";";
+                object val = p.GetValue(this);
+                res += ((val != null) ? val.ToString() : "null") + ";";
             }
             return res.TrimEnd(';');
         }

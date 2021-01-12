@@ -19,19 +19,19 @@ namespace Database
             conn = new NpgsqlConnection(connString);
         }
 
-        public async Task<List<Kraj>> GetAllPost()
+        public async Task<List<Kraj>> GetAllPOs()
         {
             var result = new List<Kraj>();
 
             await conn.OpenAsync();
 
-            string command = "SELECT ime, posta FROM kraji;";
+            string command = "SELECT id, ime, posta FROM kraji;";
             using(var com = new NpgsqlCommand(command, conn))
             {
                 var r = com.ExecuteReader();
                 while(await r.ReadAsync())
                 {
-                    result.Add(new Kraj(r.GetString(0), r.GetString(1)));
+                    result.Add(new Kraj(r.GetString(1), r.GetString(2), id: r.GetInt32(0)));
                 }
             }
 
@@ -57,8 +57,14 @@ namespace Database
                 }
                 
             }
+            await conn.CloseAsync();
 
             return res;
+        }
+
+        public async Task<User> RegisterUser(User newUser)
+        {
+            return null;
         }
     }
 }
