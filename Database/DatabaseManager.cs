@@ -62,9 +62,32 @@ namespace Database
             return res;
         }
 
-        public async Task<User> RegisterUser(User newUser)
+        public async Task<User> RegisterUser(User newUser, string pass)
         {
-            return null;
+            User res;
+
+            await conn.OpenAsync();
+            string command = "SELECT register_user(@name, @surname, @uname, @email, @address, @postid, @pass)";
+            using(var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("name", newUser.Name);
+                com.Parameters.AddWithValue("surname", newUser.Surname);
+                com.Parameters.AddWithValue("uname", newUser.Username);
+                com.Parameters.AddWithValue("email", newUser.Email);
+                com.Parameters.AddWithValue("postid", newUser.Reg_ID);
+                com.Parameters.AddWithValue("address", newUser.Address);
+                com.Parameters.AddWithValue("pass", pass);
+
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync())
+                {
+                    res = new User(r.GetString(1), r.GetString(2), r.GetString(3), r.GetString(4), r.GetString(5), r.GetInt32(6), r.GetInt32(7), r.GetInt32(8), r.GetInt32(0));
+                }
+                else res = null;
+            }
+
+            await conn.CloseAsync();
+            return res;
         }
     }
 }
