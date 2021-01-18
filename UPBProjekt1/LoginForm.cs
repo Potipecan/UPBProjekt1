@@ -35,13 +35,9 @@ namespace UPBProjekt1
             if (UsernameTB.Text != "" && PasswordTB.Text != "")
             {
                 var user = await DB.GetUser(UsernameTB.Text, PasswordTB.Text);
-                if (user != null)
-                {
-                    //TO DO: Transition to next form
-                }
-                else MessageBox.Show("Login failed.\nCheck your info.");
+                ToDashboard(user);
             }
-            else MessageBox.Show("Input all fields.");
+            else MessageBox.Show("Fill out all fields.");
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
@@ -62,7 +58,7 @@ namespace UPBProjekt1
             Tabs.SelectedIndex = 0;
         }
 
-        private void RegisterButton_Click(object sender, EventArgs e)
+        private async void RegisterButton_Click(object sender, EventArgs e)
         {
             foreach(var c in RegisterGB.Controls)
             {
@@ -84,7 +80,19 @@ namespace UPBProjekt1
             }
 
             var newUser = new User(NameTB.Text, SurnameTB.Text, UnameTB.Text, EmailTB.Text, AddressTB.Text, POs[PostCB.SelectedIndex].ID);
-            //TO DO: add user registration function in database manager
+            var user = await DB.RegisterUser(newUser, PassTB.Text);
+            ToDashboard(user);
+        }
+
+        private void ToDashboard(User user)
+        {
+            if(user == null)
+            {
+                MessageBox.Show("Login failed.");
+                return;
+            }
+
+            new Dashboard(user).Show();
         }
     }
 }
