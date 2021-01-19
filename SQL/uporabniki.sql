@@ -9,20 +9,21 @@ CREATE OR REPLACE FUNCTION register_user(
 	a_kraj_id INT,
 	a_geslo VARCHAR(255)
 )
-RETURNS INT AS
+RETURNS SETOF uporabniki AS
 $$
 DECLARE
+	result uporabniki%ROWTYPE;
 	uid INT;
 BEGIN
 	uid := -1;
 	INSERT INTO uporabniki (ime, priimek, uime, email, naslov, kraj_id, geslo)
 	VALUES (a_ime, a_priimek, a_uime, a_email, a_naslov, a_kraj_id, MD5(a_geslo))
-	RETURNING id INTO uid;
+	RETURNING * INTO result;
 	
 	INSERT INTO nastavitve(font, temno, uporabnik_id)
-	VALUES ('Arial', TRUE, uid);
+	VALUES ('Arial', TRUE, result.id);
 	
-	RETURN uid;
+	RETURN NEXT result;
 END;
 $$ LANGUAGE 'plpgsql';
 
