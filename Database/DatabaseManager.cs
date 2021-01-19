@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace Database
 {
@@ -44,7 +46,7 @@ namespace Database
         {
             User res = null;
             await conn.OpenAsync();
-            string command = "SELECT get_user(@uname, @pass);";
+            string command = "SELECT * FROM get_user(@uname, @pass);";
             using(var com = new NpgsqlCommand(command, conn))
             {
                 com.Parameters.AddWithValue("uname", username);
@@ -67,16 +69,16 @@ namespace Database
             User res;
 
             await conn.OpenAsync();
-            string command = "SELECT register_user(@name, @surname, @uname, @email, @address, @postid, @pass)";
+            string command = $"SELECT * FROM register_user(@name, @surname, @uname, @email, @address, @postid, @pass)";
             using(var com = new NpgsqlCommand(command, conn))
             {
-                com.Parameters.AddWithValue("name", newUser.Name);
-                com.Parameters.AddWithValue("surname", newUser.Surname);
-                com.Parameters.AddWithValue("uname", newUser.Username);
-                com.Parameters.AddWithValue("email", newUser.Email);
-                com.Parameters.AddWithValue("postid", newUser.Reg_ID);
-                com.Parameters.AddWithValue("address", newUser.Address);
-                com.Parameters.AddWithValue("pass", pass);
+                com.Parameters.AddWithValue("name", NpgsqlDbType.Varchar, newUser.Name);
+                com.Parameters.AddWithValue("surname", NpgsqlDbType.Varchar, newUser.Surname);
+                com.Parameters.AddWithValue("uname", NpgsqlDbType.Varchar, newUser.Username);
+                com.Parameters.AddWithValue("email", NpgsqlDbType.Varchar, newUser.Email);
+                com.Parameters.AddWithValue("postid", NpgsqlDbType.Integer, newUser.Reg_ID);
+                com.Parameters.AddWithValue("address", NpgsqlDbType.Varchar, newUser.Address);
+                com.Parameters.AddWithValue("pass", NpgsqlDbType.Varchar, pass);
 
                 var r = await com.ExecuteReaderAsync();
                 if (await r.ReadAsync())
