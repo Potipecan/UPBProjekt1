@@ -40,6 +40,8 @@ namespace UPBProjekt1
             this.LoginTabPage = new System.Windows.Forms.TabPage();
             this.RegistrationTabPage = new System.Windows.Forms.TabPage();
             this.RegisterGB = new System.Windows.Forms.GroupBox();
+            this.EmailTB = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.CancelBtn = new System.Windows.Forms.Button();
             this.RegisterButton = new System.Windows.Forms.Button();
             this.PostCB = new System.Windows.Forms.ComboBox();
@@ -56,8 +58,6 @@ namespace UPBProjekt1
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.EmailTB = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.LoginGroupBox.SuspendLayout();
             this.Tabs.SuspendLayout();
             this.LoginTabPage.SuspendLayout();
@@ -193,12 +193,29 @@ namespace UPBProjekt1
             this.RegisterGB.TabIndex = 2;
             this.RegisterGB.TabStop = false;
             // 
+            // EmailTB
+            // 
+            this.EmailTB.Location = new System.Drawing.Point(149, 99);
+            this.EmailTB.Name = "EmailTB";
+            this.EmailTB.Size = new System.Drawing.Size(234, 22);
+            this.EmailTB.TabIndex = 10;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(97, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(46, 17);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Email:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // CancelBtn
             // 
             this.CancelBtn.Location = new System.Drawing.Point(226, 253);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(157, 32);
-            this.CancelBtn.TabIndex = 15;
+            this.CancelBtn.TabIndex = 16;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
@@ -208,7 +225,7 @@ namespace UPBProjekt1
             this.RegisterButton.Location = new System.Drawing.Point(22, 253);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(157, 32);
-            this.RegisterButton.TabIndex = 14;
+            this.RegisterButton.TabIndex = 15;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
@@ -219,28 +236,28 @@ namespace UPBProjekt1
             this.PostCB.Location = new System.Drawing.Point(149, 212);
             this.PostCB.Name = "PostCB";
             this.PostCB.Size = new System.Drawing.Size(234, 24);
-            this.PostCB.TabIndex = 13;
+            this.PostCB.TabIndex = 14;
             // 
             // AddressTB
             // 
             this.AddressTB.Location = new System.Drawing.Point(149, 183);
             this.AddressTB.Name = "AddressTB";
             this.AddressTB.Size = new System.Drawing.Size(234, 22);
-            this.AddressTB.TabIndex = 12;
+            this.AddressTB.TabIndex = 13;
             // 
             // PassChkTB
             // 
             this.PassChkTB.Location = new System.Drawing.Point(149, 155);
             this.PassChkTB.Name = "PassChkTB";
             this.PassChkTB.Size = new System.Drawing.Size(234, 22);
-            this.PassChkTB.TabIndex = 11;
+            this.PassChkTB.TabIndex = 12;
             // 
             // PassTB
             // 
             this.PassTB.Location = new System.Drawing.Point(149, 127);
             this.PassTB.Name = "PassTB";
             this.PassTB.Size = new System.Drawing.Size(234, 22);
-            this.PassTB.TabIndex = 10;
+            this.PassTB.TabIndex = 11;
             // 
             // UnameTB
             // 
@@ -332,23 +349,6 @@ namespace UPBProjekt1
             this.label3.TabIndex = 0;
             this.label3.Text = "Name:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // EmailTB
-            // 
-            this.EmailTB.Location = new System.Drawing.Point(149, 99);
-            this.EmailTB.Name = "EmailTB";
-            this.EmailTB.Size = new System.Drawing.Size(234, 22);
-            this.EmailTB.TabIndex = 17;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(97, 102);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 17);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "Email:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // WorkHoursChecker
             // 

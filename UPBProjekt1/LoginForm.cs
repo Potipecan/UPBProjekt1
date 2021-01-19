@@ -92,6 +92,7 @@ namespace UPBProjekt1
                 return;
             }
 
+            Hide();
             new Dashboard(user).Show();
         }
     }
