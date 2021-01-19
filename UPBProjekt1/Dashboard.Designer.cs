@@ -80,6 +80,7 @@ namespace UPBProjekt1
             this.EditProfileButton.TabIndex = 2;
             this.EditProfileButton.Text = "Edit profile";
             this.EditProfileButton.UseVisualStyleBackColor = true;
+            this.EditProfileButton.Click += new System.EventHandler(this.EditProfileButton_Click);
             // 
             // LogoutButton
             // 
@@ -89,6 +90,7 @@ namespace UPBProjekt1
             this.LogoutButton.TabIndex = 3;
             this.LogoutButton.Text = "Log out";
             this.LogoutButton.UseVisualStyleBackColor = true;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // Dashboard
             // 

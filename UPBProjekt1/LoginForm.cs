@@ -92,8 +92,21 @@ namespace UPBProjekt1
                 return;
             }
 
+            foreach(var c in Controls)
+            {
+                if (c.GetType() == typeof(TextBox)) (c as TextBox).Text = "";
+            }
+            PostCB.SelectedIndex = -1;
+
             Hide();
-            new Dashboard(user).Show();
+            var d = new Dashboard(user);
+            d.FormClosed += DashboardClosed;
+            d.Show();
+        }
+
+        private void DashboardClosed(object sender, FormClosedEventArgs e)
+        {
+            Show();
         }
     }
 }

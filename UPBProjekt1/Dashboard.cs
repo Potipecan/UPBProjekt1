@@ -34,5 +34,16 @@ namespace UPBProjekt1
             UserInfoLabel.Text = $"{CUser.Name}\n{CUser.Surname}\n{CUser.Username}\n{CUser.Email}\n" +
                 $"{CUser.Address}\n{po.PostID} - {po.Name}\n{CUser.Projects_Num}\n{CUser.Completed_Num}";
         }
+
+        private void EditProfileButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            var res = MessageBox.Show("Are you sure you want to log out?", "Logging out", MessageBoxButtons.YesNo);
+            if(res == DialogResult.OK) Close();
+        }
     }
 }
