@@ -61,7 +61,7 @@ namespace UPBProjekt1
             this.SettingsGB = new System.Windows.Forms.GroupBox();
             this.DarkmodeChkBox = new System.Windows.Forms.CheckBox();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.EditCancelButton = new System.Windows.Forms.Button();
             this.DeleteAccButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.FontTB = new System.Windows.Forms.TextBox();
@@ -391,14 +391,14 @@ namespace UPBProjekt1
             this.SaveButton.Text = "Save changes";
             this.SaveButton.UseVisualStyleBackColor = true;
             // 
-            // CancelButton
+            // EditCancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(168, 308);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(150, 41);
-            this.CancelButton.TabIndex = 21;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
+            this.EditCancelButton.Location = new System.Drawing.Point(168, 308);
+            this.EditCancelButton.Name = "EditCancelButton";
+            this.EditCancelButton.Size = new System.Drawing.Size(150, 41);
+            this.EditCancelButton.TabIndex = 21;
+            this.EditCancelButton.Text = "Cancel";
+            this.EditCancelButton.UseVisualStyleBackColor = true;
             // 
             // DeleteAccButton
             // 
@@ -441,7 +441,7 @@ namespace UPBProjekt1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.DeleteAccButton);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.EditCancelButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.SettingsGB);
             this.Controls.Add(this.PostGB);
@@ -492,7 +492,7 @@ namespace UPBProjekt1
         private System.Windows.Forms.GroupBox SettingsGB;
         private System.Windows.Forms.CheckBox DarkmodeChkBox;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button EditCancelButton;
         private System.Windows.Forms.Button DeleteAccButton;
         private System.Windows.Forms.Button SetFontButton;
         private System.Windows.Forms.TextBox FontTB;
