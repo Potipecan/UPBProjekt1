@@ -37,6 +37,20 @@ BEGIN
 END;
 $$ LANGUAGE 'plpgsql';
 
-CREATE FUNCTION
 
-Query returned successfully in 147 msec.
+CREATE FUNCTION delete_kraj(a_id INT)
+RETURNS BOOLEAN AS
+$$
+DECLARE
+	o INT;
+BEGIN
+	DELETE FROM kraji
+	WHERE id = a_id
+	RETURNING id INTO o;
+	
+	IF o IS NULL THEN 
+		RETURN FALSE; 
+	END IF;
+	RETURN TRUE;
+END;
+$$ LANGUAGE 'plpgsql';
