@@ -27,13 +27,13 @@ namespace Database
 
             await conn.OpenAsync();
 
-            string command = "SELECT id, ime, posta FROM kraji;";
+            string command = "SELECT * FROM kraji;";
             using(var com = new NpgsqlCommand(command, conn))
             {
                 var r = com.ExecuteReader();
                 while(await r.ReadAsync())
                 {
-                    result.Add(new Region(r.GetString(1), r.GetString(2), id: r.GetInt32(0)));
+                    result.Add(new Region(r));
                 }
             }
 
@@ -55,7 +55,7 @@ namespace Database
 
                 if(await r.ReadAsync())
                 {
-                    res = new User(r.GetString(1), r.GetString(2), r.GetString(3), r.GetString(4), r.GetString(5), r.GetInt32(6), r.GetInt32(7), r.GetInt32(8), r.GetInt32(0));
+                    res = new User(r);
                 }
                 
             }
@@ -102,7 +102,7 @@ namespace Database
             {
                 com.Parameters.AddWithValue("uid", user.ID);
                 var r = await com.ExecuteReaderAsync();
-                if (await r.ReadAsync()) res = new Settings(r.GetInt32(0), r.GetInt32(3), r.GetBoolean(2), r.GetString(1));
+                if (await r.ReadAsync()) res = new Settings(r);
             }
 
             await conn.CloseAsync();

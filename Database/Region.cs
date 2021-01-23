@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace Database
 {
@@ -14,6 +15,11 @@ namespace Database
 
         public Table(int id = -1) {
             ID = id;
+        }
+
+        public Table(NpgsqlDataReader r)
+        {
+            ID = r.GetInt32(0);
         }
 
         public override string ToString()
@@ -39,6 +45,13 @@ namespace Database
             Name = name;
             PostID = postid;
             Abbr = abbr;
+        }
+
+        public Region(NpgsqlDataReader r) : base(r)
+        {
+            Name = r.GetString(1);
+            PostID = r.GetString(2);
+            Abbr = r.GetString(3);
         }
     }
 
@@ -74,6 +87,18 @@ namespace Database
             Projects_Num = proj_num;
             Completed_Num = comp_num;
         }
+
+        public User(NpgsqlDataReader r) : base(r)
+        {
+            Name = r.GetString(1);
+            Surname = r.GetString(2);
+            Username = r.GetString(3);
+            Email = r.GetString(4);
+            Address = r.GetString(5);
+            Reg_ID = r.GetInt32(6);
+            Projects_Num = r.GetInt32(7);
+            Completed_Num = r.GetInt32(8);
+        }
     }
 
     public class Settings : Table
@@ -84,9 +109,16 @@ namespace Database
 
         public Settings(int id, int uid, bool darkmode, string font) : base(id)
         {
-            UserID = id;
+            UserID = uid;
             DarkMode = darkmode;
             Font = font;
+        }
+
+        public Settings(NpgsqlDataReader r) : base(r)
+        {
+            Font = r.GetString(1);
+            DarkMode = r.GetBoolean(2);
+            UserID = r.GetInt32(3);
         }
 
     }
