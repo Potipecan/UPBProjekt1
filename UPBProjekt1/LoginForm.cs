@@ -14,7 +14,7 @@ namespace UPBProjekt1
     public partial class WorkHoursChecker : Form
     {
         public static DatabaseManager DB;
-        public static List<Kraj> POs;
+        public static List<Database.Region> POs;
 
         public WorkHoursChecker()
         {
@@ -22,12 +22,14 @@ namespace UPBProjekt1
 
             DB = new DatabaseManager();
 
-            Task.Run(async () =>
-            {
-                POs = await DB.GetAllPOs();
-            }).Wait();
+            Task.Run(async () => await UpdatePOs()).Wait();
 
             POs.ForEach(p => PostCB.Items.Add($"{p.PostID} - {p.Name}"));
+        }
+
+        public static async Task UpdatePOs()
+        {
+            POs = await DB.GetAllPOs();
         }
 
         private async void LoginButton_Click(object sender, EventArgs e)
@@ -106,6 +108,8 @@ namespace UPBProjekt1
 
         private void DashboardClosed(object sender, FormClosedEventArgs e)
         {
+            POs.Clear();
+            POs.ForEach(p => PostCB.Items.Add($"{p.PostID} - {p.Name}"));
             Show();
         }
     }
