@@ -21,9 +21,9 @@ namespace Database
             conn = new NpgsqlConnection(connString);
         }
 
-        public async Task<List<Kraj>> GetAllPOs()
+        public async Task<List<Region>> GetAllPOs()
         {
-            var result = new List<Kraj>();
+            var result = new List<Region>();
 
             await conn.OpenAsync();
 
@@ -33,7 +33,7 @@ namespace Database
                 var r = com.ExecuteReader();
                 while(await r.ReadAsync())
                 {
-                    result.Add(new Kraj(r.GetString(1), r.GetString(2), id: r.GetInt32(0)));
+                    result.Add(new Region(r.GetString(1), r.GetString(2), id: r.GetInt32(0)));
                 }
             }
 
@@ -86,6 +86,23 @@ namespace Database
                     res = new User(r.GetString(1), r.GetString(2), r.GetString(3), r.GetString(4), r.GetString(5), r.GetInt32(6), r.GetInt32(7), r.GetInt32(8), r.GetInt32(0));
                 }
                 else res = null;
+            }
+
+            await conn.CloseAsync();
+            return res;
+        }
+
+        public async Task<Settings> GetSettings(User user)
+        {
+            Settings res = null;
+
+            await conn.OpenAsync();
+            string command = "SELECT * FROM get_settings(@uid);";
+            using(var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("uid", user.ID);
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new Settings(r.GetInt32(0), r.GetInt32(3), r.GetBoolean(2), r.GetString(1));
             }
 
             await conn.CloseAsync();
