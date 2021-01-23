@@ -27,7 +27,7 @@ namespace Database
 
             await conn.OpenAsync();
 
-            string command = "SELECT * FROM kraji;";
+            string command = "SELECT * FROM all_kraji();";
             using(var com = new NpgsqlCommand(command, conn))
             {
                 var r = com.ExecuteReader();

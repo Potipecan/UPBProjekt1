@@ -37,21 +37,21 @@ namespace Database
     public class Region : Table
     {
         public string Name { get; set; }
-        public string PostID { get; set; }
+        public string Code { get; set; }
         public string Abbr { get; set; }
 
         public Region(string name, string postid, string abbr = null, int id = -1) : base(id)
         {
             Name = name;
-            PostID = postid;
+            Code = postid;
             Abbr = abbr;
         }
 
         public Region(NpgsqlDataReader r) : base(r)
         {
             Name = r.GetString(1);
-            PostID = r.GetString(2);
-            Abbr = r.GetString(3);
+            Code = r.GetString(2);
+            Abbr = (!r.IsDBNull(3)) ? r.GetString(3) : "";
         }
     }
 
