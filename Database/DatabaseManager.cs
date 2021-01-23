@@ -11,7 +11,7 @@ namespace Database
 {
     public class DatabaseManager
     {
-        
+
         string connString;
         private NpgsqlConnection conn;
 
@@ -21,6 +21,7 @@ namespace Database
             conn = new NpgsqlConnection(connString);
         }
 
+        #region Post code CRUD
         public async Task<List<Region>> GetAllPOs()
         {
             var result = new List<Region>();
@@ -28,10 +29,10 @@ namespace Database
             await conn.OpenAsync();
 
             string command = "SELECT * FROM all_kraji();";
-            using(var com = new NpgsqlCommand(command, conn))
+            using (var com = new NpgsqlCommand(command, conn))
             {
                 var r = com.ExecuteReader();
-                while(await r.ReadAsync())
+                while (await r.ReadAsync())
                 {
                     result.Add(new Region(r));
                 }
@@ -42,22 +43,40 @@ namespace Database
             return result;
         }
 
+        public async Task<Region> UpdatePO(Region po)
+        {
+            Region res = null;
+            await conn.OpenAsync();
+            using(var com = po.UpdateCommand(conn))
+            {
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new Region(r);
+
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+
+            return res;
+        }
+        #endregion
+
+        #region User CRUD
         public async Task<User> GetUser(string username, string password)
         {
             User res = null;
             await conn.OpenAsync();
             string command = "SELECT * FROM get_user(@uname, @pass);";
-            using(var com = new NpgsqlCommand(command, conn))
+            using (var com = new NpgsqlCommand(command, conn))
             {
                 com.Parameters.AddWithValue("uname", username);
                 com.Parameters.AddWithValue("pass", password);
                 var r = await com.ExecuteReaderAsync();
 
-                if(await r.ReadAsync())
+                if (await r.ReadAsync())
                 {
                     res = new User(r);
                 }
-                
+
             }
             await conn.CloseAsync();
 
@@ -70,7 +89,7 @@ namespace Database
 
             await conn.OpenAsync();
             string command = $"SELECT * FROM register_user(@name, @surname, @uname, @email, @address, @postid, @pass)";
-            using(var com = newUser.InsertCommand(conn))
+            using (var com = newUser.InsertCommand(conn))
             {
                 com.Parameters.AddWithValue("pass", NpgsqlDbType.Varchar, pass);
 
@@ -92,7 +111,7 @@ namespace Database
 
             await conn.OpenAsync();
 
-            using(var com = user.UpdateCommand(conn))
+            using (var com = user.UpdateCommand(conn))
             {
                 com.Parameters.AddWithValue("newpass", newpass);
                 com.Parameters.AddWithValue("passchk", passchk);
@@ -113,7 +132,7 @@ namespace Database
 
             await conn.OpenAsync();
             string command = "SELECT delete_user(@id, @passchk)";
-            using(var com = new NpgsqlCommand(command, conn))
+            using (var com = new NpgsqlCommand(command, conn))
             {
                 com.Parameters.AddWithValue("id", user.ID);
                 com.Parameters.AddWithValue("passchk", pass);
@@ -135,14 +154,16 @@ namespace Database
 
             return res;
         }
+        #endregion
 
+        #region Settings
         public async Task<Settings> GetSettings(User user)
         {
             Settings res = null;
 
             await conn.OpenAsync();
             string command = "SELECT * FROM get_settings(@uid);";
-            using(var com = new NpgsqlCommand(command, conn))
+            using (var com = new NpgsqlCommand(command, conn))
             {
                 com.Parameters.AddWithValue("uid", user.ID);
                 var r = await com.ExecuteReaderAsync();
@@ -152,5 +173,6 @@ namespace Database
             await conn.CloseAsync();
             return res;
         }
+        #endregion    
     }
 }
