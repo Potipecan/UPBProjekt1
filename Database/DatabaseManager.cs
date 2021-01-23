@@ -70,25 +70,40 @@ namespace Database
 
             await conn.OpenAsync();
             string command = $"SELECT * FROM register_user(@name, @surname, @uname, @email, @address, @postid, @pass)";
-            using(var com = new NpgsqlCommand(command, conn))
+            using(var com = newUser.InsertCommand(conn))
             {
-                com.Parameters.AddWithValue("name", NpgsqlDbType.Varchar, newUser.Name);
-                com.Parameters.AddWithValue("surname", NpgsqlDbType.Varchar, newUser.Surname);
-                com.Parameters.AddWithValue("uname", NpgsqlDbType.Varchar, newUser.Username);
-                com.Parameters.AddWithValue("email", NpgsqlDbType.Varchar, newUser.Email);
-                com.Parameters.AddWithValue("postid", NpgsqlDbType.Integer, newUser.Reg_ID);
-                com.Parameters.AddWithValue("address", NpgsqlDbType.Varchar, newUser.Address);
                 com.Parameters.AddWithValue("pass", NpgsqlDbType.Varchar, pass);
 
                 var r = await com.ExecuteReaderAsync();
                 if (await r.ReadAsync())
                 {
-                    res = new User(r.GetString(1), r.GetString(2), r.GetString(3), r.GetString(4), r.GetString(5), r.GetInt32(6), r.GetInt32(7), r.GetInt32(8), r.GetInt32(0));
+                    res = new User(r);
                 }
                 else res = null;
             }
 
             await conn.CloseAsync();
+            return res;
+        }
+
+        public async Task<User> UpdateUser(User user, string newpass, string passchk)
+        {
+            User res = null;
+
+            await conn.OpenAsync();
+
+            using(var com = user.UpdateCommand(conn))
+            {
+                com.Parameters.AddWithValue("newpass", newpass);
+                com.Parameters.AddWithValue("passchk", passchk);
+
+                var r = com.ExecuteReader();
+                if (await r.ReadAsync()) res = new User(r);
+
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+
             return res;
         }
 
