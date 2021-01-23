@@ -128,6 +128,11 @@ namespace Database
             Completed_Num = r.GetInt32(8);
         }
 
+        /// <summary>
+        /// Command parameter <c>pass</c> must be added externally.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <returns></returns>
         public override NpgsqlCommand InsertCommand(NpgsqlConnection conn)
         {
             string command = "SELECT * FROM register_user(@name, @surname, @uname, @email, @address, @postid, @pass);";
@@ -142,6 +147,11 @@ namespace Database
             return com;
         }
 
+        /// <summary>
+        /// Commmand parameters <c>newpass</c> and <c>passchk</c> must be added externally.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <returns></returns>
         public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
         {
             string command = "SELECT * FROM update_user(@id, @name, @surname, @uname, @email, @address, @postid, @newpass, @passchk);";
@@ -182,6 +192,11 @@ namespace Database
             throw new NotImplementedException("Do not call this function for settings.");
         }
 
+        /// <summary>
+        /// Gets command
+        /// </summary>
+        /// <param name="conn">Database connection</param>
+        /// <returns>NpgsqlCommand</returns>
         public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
         {
             string command = "SELECT * FROM set_settings(@id, @darkmode, @font);";
