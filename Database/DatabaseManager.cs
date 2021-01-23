@@ -198,8 +198,8 @@ namespace Database
         }
         #endregion
 
-        #region Settings
-        public async Task<Settings> GetSettings(User user)
+        #region Settings RU
+        public async Task<Settings> GetSettingForUser(User user)
         {
             Settings res = null;
 
@@ -210,6 +210,21 @@ namespace Database
                 com.Parameters.AddWithValue("uid", user.ID);
                 var r = await com.ExecuteReaderAsync();
                 if (await r.ReadAsync()) res = new Settings(r);
+            }
+
+            await conn.CloseAsync();
+            return res;
+        }
+
+        public async Task<Settings> SetSettings(Settings settings)
+        {
+            Settings res = null;
+            await conn.OpenAsync();
+            using (var com = settings.UpdateCommand(conn))
+            {
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new Settings(r);
+                com.Dispose();
             }
 
             await conn.CloseAsync();

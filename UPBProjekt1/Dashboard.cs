@@ -26,7 +26,7 @@ namespace UPBProjekt1
             CUser = user;
             Task.Run(async () =>
             {
-                CSettings = await WorkHoursChecker.DB.GetSettings(CUser);
+                CSettings = await WorkHoursChecker.DB.GetSettingForUser(CUser);
             }).Wait();
 
             WindowRefresh();
