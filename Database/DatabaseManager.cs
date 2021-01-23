@@ -74,6 +74,32 @@ namespace Database
 
             return res;
         }
+
+        public async Task<bool> DeletePO(Region po)
+        {
+            bool res = false;
+            await conn.OpenAsync();
+            string command = "SELECT * FROM delete_kraj(@id);";
+            using (var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("id", po.ID);
+
+                try
+                {
+                    var r = await com.ExecuteReaderAsync();
+                    if (await r.ReadAsync()) res = r.GetBoolean(0);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                com.Dispose();
+            }
+
+            await conn.CloseAsync();
+
+            return res;
+        }
         #endregion
 
         #region User CRUD
