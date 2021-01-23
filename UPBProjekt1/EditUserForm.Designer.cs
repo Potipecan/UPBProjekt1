@@ -59,12 +59,14 @@ namespace UPBProjekt1
             this.PostCancelButton = new System.Windows.Forms.Button();
             this.PostDeleteButton = new System.Windows.Forms.Button();
             this.SettingsGB = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.DarkmodeChkBox = new System.Windows.Forms.CheckBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.DeleteAccButton = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.FontTB = new System.Windows.Forms.TextBox();
+            this.SetFontButton = new System.Windows.Forms.Button();
+            this.FontSelector = new System.Windows.Forms.FontDialog();
             this.UserInfoGB.SuspendLayout();
             this.PostGB.SuspendLayout();
             this.SettingsGB.SuspendLayout();
@@ -139,6 +141,7 @@ namespace UPBProjekt1
             this.PostCB.Name = "PostCB";
             this.PostCB.Size = new System.Drawing.Size(207, 24);
             this.PostCB.TabIndex = 5;
+            this.PostCB.SelectedIndexChanged += new System.EventHandler(this.PostCB_SelectedIndexChanged);
             // 
             // NewPassTB
             // 
@@ -334,6 +337,7 @@ namespace UPBProjekt1
             this.PostCommitButton.TabIndex = 19;
             this.PostCommitButton.Text = "Add";
             this.PostCommitButton.UseVisualStyleBackColor = true;
+            this.PostCommitButton.Click += new System.EventHandler(this.PostCommitButton_Click);
             // 
             // PostCancelButton
             // 
@@ -356,23 +360,16 @@ namespace UPBProjekt1
             // 
             // SettingsGB
             // 
+            this.SettingsGB.Controls.Add(this.SetFontButton);
+            this.SettingsGB.Controls.Add(this.FontTB);
             this.SettingsGB.Controls.Add(this.label13);
             this.SettingsGB.Controls.Add(this.DarkmodeChkBox);
-            this.SettingsGB.Controls.Add(this.comboBox1);
             this.SettingsGB.Location = new System.Drawing.Point(391, 184);
             this.SettingsGB.Name = "SettingsGB";
             this.SettingsGB.Size = new System.Drawing.Size(397, 118);
             this.SettingsGB.TabIndex = 19;
             this.SettingsGB.TabStop = false;
             this.SettingsGB.Text = "UI Settings";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(133, 21);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(244, 24);
-            this.comboBox1.TabIndex = 0;
             // 
             // DarkmodeChkBox
             // 
@@ -384,15 +381,6 @@ namespace UPBProjekt1
             this.DarkmodeChkBox.TabIndex = 1;
             this.DarkmodeChkBox.Text = "Dark mode";
             this.DarkmodeChkBox.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(91, 24);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(36, 17);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Font";
             // 
             // SaveButton
             // 
@@ -420,6 +408,32 @@ namespace UPBProjekt1
             this.DeleteAccButton.TabIndex = 22;
             this.DeleteAccButton.Text = "Delete account";
             this.DeleteAccButton.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 24);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(36, 17);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Font";
+            // 
+            // FontTB
+            // 
+            this.FontTB.Location = new System.Drawing.Point(50, 21);
+            this.FontTB.Name = "FontTB";
+            this.FontTB.ReadOnly = true;
+            this.FontTB.Size = new System.Drawing.Size(244, 22);
+            this.FontTB.TabIndex = 26;
+            // 
+            // SetFontButton
+            // 
+            this.SetFontButton.Location = new System.Drawing.Point(300, 21);
+            this.SetFontButton.Name = "SetFontButton";
+            this.SetFontButton.Size = new System.Drawing.Size(75, 23);
+            this.SetFontButton.TabIndex = 27;
+            this.SetFontButton.Text = "Set";
+            this.SetFontButton.UseVisualStyleBackColor = true;
             // 
             // EditUserForm
             // 
@@ -477,10 +491,12 @@ namespace UPBProjekt1
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox SettingsGB;
         private System.Windows.Forms.CheckBox DarkmodeChkBox;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button DeleteAccButton;
+        private System.Windows.Forms.Button SetFontButton;
+        private System.Windows.Forms.TextBox FontTB;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.FontDialog FontSelector;
     }
 }
