@@ -32,6 +32,11 @@ namespace Database
             }
             return res.TrimEnd(';');
         }
+
+        public abstract NpgsqlCommand InsertCommand(NpgsqlConnection conn);
+
+        public abstract NpgsqlCommand UpdateCommand(NpgsqlConnection conn);
+
     }
 
     public class Region : Table
@@ -52,6 +57,29 @@ namespace Database
             Name = r.GetString(1);
             Code = r.GetString(2);
             Abbr = (!r.IsDBNull(3)) ? r.GetString(3) : "";
+        }
+
+        public override NpgsqlCommand InsertCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM add_kraj(@name, @code, @abbr);";
+            var com = new NpgsqlCommand(command, conn);
+            com.Parameters.AddWithValue("name", Name);
+            com.Parameters.AddWithValue("code", Code);
+            com.Parameters.AddWithValue("abbr", Abbr == "" ? null : Abbr);
+
+            return com;
+        }
+
+        public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM update_kraj(@id, @name, @code, @abbr);";
+            var com = new NpgsqlCommand(command, conn);
+            com.Parameters.AddWithValue("id", ID);
+            com.Parameters.AddWithValue("name", Name);
+            com.Parameters.AddWithValue("code", Code);
+            com.Parameters.AddWithValue("abbr", Abbr == "" ? null : Abbr);
+
+            return com;
         }
     }
 
@@ -99,6 +127,34 @@ namespace Database
             Projects_Num = r.GetInt32(7);
             Completed_Num = r.GetInt32(8);
         }
+
+        public override NpgsqlCommand InsertCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM register_user(@name, @surname, @uname, @email, @address, @postid, @pass);";
+            var com = new NpgsqlCommand(command, conn);
+            com.Parameters.AddWithValue("name", Name);
+            com.Parameters.AddWithValue("surname", Surname);
+            com.Parameters.AddWithValue("uname", Username);
+            com.Parameters.AddWithValue("email", Email);
+            com.Parameters.AddWithValue("postid", Reg_ID);
+            com.Parameters.AddWithValue("address", Address);
+
+            return com;
+        }
+
+        public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM update_user(@id, @name, @surname, @uname, @email, @address, @postid, @newpass, @passchk);";
+            var com = new NpgsqlCommand(command, conn);
+            com.Parameters.AddWithValue("name", Name);
+            com.Parameters.AddWithValue("surname", Surname);
+            com.Parameters.AddWithValue("uname", Username);
+            com.Parameters.AddWithValue("email", Email);
+            com.Parameters.AddWithValue("postid", Reg_ID);
+            com.Parameters.AddWithValue("address", Address);
+
+            return com;
+        }
     }
 
     public class Settings : Table
@@ -121,5 +177,20 @@ namespace Database
             UserID = r.GetInt32(3);
         }
 
+        public override NpgsqlCommand InsertCommand(NpgsqlConnection conn)
+        {
+            throw new NotImplementedException("Do not call this function for settings.");
+        }
+
+        public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM set_settings(@id, @darkmode, @font);";
+            var com = new NpgsqlCommand(command, conn);
+            com.Parameters.AddWithValue("id", ID);
+            com.Parameters.AddWithValue("darkmode", DarkMode);
+            com.Parameters.AddWithValue("font", Font);
+
+            return com;
+        }
     }
 }
