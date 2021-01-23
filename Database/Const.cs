@@ -27,10 +27,10 @@ namespace Database
 
             Light = new ColorTheme(lightccolor, lightcfont, lightbg, lightfont);
 
-            var darkbg = Color.FromArgb(220, 220, 220);
-            var darkfont = Color.FromArgb(30, 30, 30);
-            var darkccolor = Color.FromArgb(207, 207, 207);
-            var darkcfont = Color.FromArgb(15, 15, 15);
+            var darkbg = Color.FromArgb(30, 30, 30);
+            var darkfont = Color.FromArgb(220, 220, 220);
+            var darkccolor = Color.FromArgb(15, 15, 15);
+            var darkcfont = Color.FromArgb(207, 207, 207);
 
             Dark = new ColorTheme(darkccolor, darkcfont, darkbg, darkfont);
         }
@@ -51,6 +51,10 @@ namespace Database
             MainFontColor = mainfontcolor;
         }
 
+        /// <summary>
+        /// Applies color theme to a form.
+        /// </summary>
+        /// <param name="form">Form to apply theme to.</param>
         public void ApplyTo(Form form)
         {
             form.BackColor = Background;
@@ -62,6 +66,22 @@ namespace Database
                 {
                     (c as Button).BackColor = ControlColor;
                     (c as Button).ForeColor = ControlFontColor;
+                }
+
+                if(c.GetType() == typeof(GroupBox))
+                {
+                    GroupBox g = c as GroupBox;
+                    g.BackColor = Background;
+                    g.ForeColor = MainFontColor;
+
+                    foreach(var co in g.Controls)
+                    {
+                        if(co.GetType() == typeof(Button))
+                        {
+                            (co as Button).BackColor = ControlColor;
+                            (co as Button).ForeColor = ControlFontColor;
+                        }
+                    }
                 }
             }
         }
