@@ -107,6 +107,35 @@ namespace Database
             return res;
         }
 
+        public async Task<bool> DeleteUser(User user, string pass)
+        {
+            bool res = false;
+
+            await conn.OpenAsync();
+            string command = "SELECT delete_user(@id, @passchk)";
+            using(var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("id", user.ID);
+                com.Parameters.AddWithValue("passchk", pass);
+
+                var r = await com.ExecuteReaderAsync();
+
+                try
+                {
+                    if (await r.ReadAsync()) res = r.GetBoolean(0);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+
+            return res;
+        }
+
         public async Task<Settings> GetSettings(User user)
         {
             Settings res = null;
