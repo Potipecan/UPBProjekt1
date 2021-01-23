@@ -24,7 +24,7 @@ namespace UPBProjekt1
 
             Task.Run(async () => await UpdatePOs()).Wait();
 
-            POs.ForEach(p => PostCB.Items.Add($"{p.PostID} - {p.Name}"));
+            POs.ForEach(p => PostCB.Items.Add($"{p.Code} - {p.Name}"));
         }
 
         public static async Task UpdatePOs()
@@ -109,7 +109,7 @@ namespace UPBProjekt1
         private void DashboardClosed(object sender, FormClosedEventArgs e)
         {
             POs.Clear();
-            POs.ForEach(p => PostCB.Items.Add($"{p.PostID} - {p.Name}"));
+            POs.ForEach(p => PostCB.Items.Add($"{p.Code} - {p.Name}"));
             Show();
         }
     }

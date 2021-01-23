@@ -41,7 +41,7 @@ namespace UPBProjekt1
 
             var po = WorkHoursChecker.POs.Find(p => p.ID == CUser.Reg_ID);
             UserInfoLabel.Text = $"{CUser.Name}\n{CUser.Surname}\n{CUser.Username}\n{CUser.Email}\n" +
-                $"{CUser.Address}\n{po.PostID} - {po.Name}\n{CUser.Projects_Num}\n{CUser.Completed_Num}";
+                $"{CUser.Address}\n{po.Code} - {po.Name}\n{CUser.Projects_Num}\n{CUser.Completed_Num}";
         }
 
         private void EditProfileButton_Click(object sender, EventArgs e)
