@@ -18,12 +18,13 @@ BEGIN
 	uid := -1;
 	INSERT INTO uporabniki (ime, priimek, uime, email, naslov, kraj_id, geslo)
 	VALUES (a_ime, a_priimek, a_uime, a_email, a_naslov, a_kraj_id, MD5(a_geslo))
-	RETURNING * INTO result;
+	RETURNING id INTO uid
 	
 	INSERT INTO nastavitve(font, temno, uporabnik_id)
-	VALUES ('Arial', TRUE, result.id);
+	VALUES ('Arial', TRUE, uid);
 	
-	RETURN NEXT result;
+	RETURN QUERY
+	SELECT * FROM uporabniki WHERE id = uid;
 END;
 $$ LANGUAGE 'plpgsql';
 
