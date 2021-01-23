@@ -58,6 +58,22 @@ namespace Database
 
             return res;
         }
+
+        public async Task<Region> AddPO(Region po)
+        {
+            Region res = null;
+            await conn.OpenAsync();
+            using (var com = po.InsertCommand(conn))
+            {
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new Region(r);
+
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+
+            return res;
+        }
         #endregion
 
         #region User CRUD
