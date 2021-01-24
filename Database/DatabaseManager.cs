@@ -22,9 +22,9 @@ namespace Database
         }
 
         #region Post code CRUD
-        public async Task<List<Region>> GetAllPOs()
+        public async Task<List<Post>> GetAllPOs()
         {
-            var result = new List<Region>();
+            var result = new List<Post>();
 
             await conn.OpenAsync();
 
@@ -34,7 +34,7 @@ namespace Database
                 var r = com.ExecuteReader();
                 while (await r.ReadAsync())
                 {
-                    result.Add(new Region(r));
+                    result.Add(new Post(r));
                 }
             }
 
@@ -43,14 +43,14 @@ namespace Database
             return result;
         }
 
-        public async Task<Region> UpdatePO(Region po)
+        public async Task<Post> UpdatePO(Post po)
         {
-            Region res = null;
+            Post res = null;
             await conn.OpenAsync();
             using (var com = po.UpdateCommand(conn))
             {
                 var r = await com.ExecuteReaderAsync();
-                if (await r.ReadAsync()) res = new Region(r);
+                if (await r.ReadAsync()) res = new Post(r);
 
                 com.Dispose();
             }
@@ -59,14 +59,14 @@ namespace Database
             return res;
         }
 
-        public async Task<Region> AddPO(Region po)
+        public async Task<Post> AddPO(Post po)
         {
-            Region res = null;
+            Post res = null;
             await conn.OpenAsync();
             using (var com = po.InsertCommand(conn))
             {
                 var r = await com.ExecuteReaderAsync();
-                if (await r.ReadAsync()) res = new Region(r);
+                if (await r.ReadAsync()) res = new Post(r);
 
                 com.Dispose();
             }
@@ -75,7 +75,7 @@ namespace Database
             return res;
         }
 
-        public async Task<bool> DeletePO(Region po)
+        public async Task<bool> DeletePO(Post po)
         {
             bool res = false;
             await conn.OpenAsync();
