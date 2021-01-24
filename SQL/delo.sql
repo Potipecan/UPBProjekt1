@@ -36,7 +36,7 @@ BEGIN
 END;
 $$ LANGUAGE 'plpgsql';
 
-CREATE FUNCTION get_delo(a_id INT DEFAULT NULL)
+CREATE OR REPLACE FUNCTION get_delo(a_projid INT)
 RETURNS SETOF delo AS
 $$
 DECLARE
@@ -44,8 +44,8 @@ DECLARE
 BEGIN
 	RETURN QUERY
 	SELECT * FROM delo
-	WHERE a_id IS NULL
-	OR id = a_id;
+	WHERE projekt_id = a_projid
+	ORDER BY d_od DESC;
 END;
 $$ LANGUAGE 'plpgsql';
 
@@ -65,3 +65,17 @@ BEGIN
 END;
 $$ LANGUAGE 'plpgsql';
 
+CREATE FUNCTION get_current_session(a_uid INT)
+RETURNS SETOF delo AS
+$$
+DECLARE
+	res delo%ROWTYPE;
+BEGIN
+	RETURN QUERY
+	SELECT d.*
+	FROM projekti p	INNER JOIN delo d ON p.id = d.projekt_id
+	WHERE p.uporabnik_id = a_uid
+	AND d_do IS NULL
+	LIMIT 1;
+END;
+$$ LANGUAGE 'plpgsql';

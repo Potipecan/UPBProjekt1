@@ -11,12 +11,12 @@ using Database;
 
 namespace UPBProjekt1
 {
-    public partial class WorkHoursChecker : Form
+    public partial class App : Form
     {
         public static DatabaseManager DB;
-        public static List<Database.Region> POs;
+        public static List<Database.Post> POs;
 
-        public WorkHoursChecker()
+        public App()
         {
             InitializeComponent();
 

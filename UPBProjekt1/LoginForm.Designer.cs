@@ -1,7 +1,7 @@
 ﻿
 namespace UPBProjekt1
 {
-    partial class WorkHoursChecker
+    partial class App
     {
         /// <summary>
         /// Required designer variable.
