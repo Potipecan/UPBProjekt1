@@ -281,4 +281,53 @@ namespace Database
             return com;
         }
     }
+
+    public class Session : Table
+    {
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
+        public string Comment { get; set; }
+        public int ProjectID { get; set; }
+
+        public Session(DateTime from, DateTime to, int projid, string comment = "", int id = -1) : base(id)
+        {
+            From = from;
+            To = to;
+            Comment = comment;
+            ProjectID = projid;
+        }
+
+        public Session(NpgsqlDataReader r) : base(r)
+        {
+            From = r.GetDateTime(1);
+            To = r.GetDateTime(2);
+            Comment = r.GetString(3);
+            ProjectID = r.GetInt32(4);
+        }
+
+        public override NpgsqlCommand InsertCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM add_delo(@from, @projectid, @to, @comment);";
+            var com = new NpgsqlCommand(command, conn);
+            com.Parameters.AddWithValue("from", From);
+            com.Parameters.AddWithValue("projectid", ProjectID);
+            com.Parameters.AddWithValue("to", To != DateTime.MinValue ? To.ToString("yyyy-MM-dd HH:mm:ss") : null);
+            com.Parameters.AddWithValue("comment", Comment != "" ? Comment : null);
+
+            return com;
+        }
+
+        public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM edit_delo(@id, @from, @projectid, @to, @comment);";
+            var com = new NpgsqlCommand(command, conn);
+            com.Parameters.AddWithValue("id", ID);
+            com.Parameters.AddWithValue("from", From);
+            com.Parameters.AddWithValue("projectid", ProjectID);
+            com.Parameters.AddWithValue("to", To != DateTime.MinValue ? To.ToString("yyyy-MM-dd HH:mm:ss") : null);
+            com.Parameters.AddWithValue("comment", Comment != "" ? Comment : null);
+
+            return com;
+        }
+    }
 }
