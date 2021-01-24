@@ -258,6 +258,23 @@ namespace Database
             return res;
         }
 
+        public async Task<Project> EditProject(Project project)
+        {
+            Project res = null;
+
+            await conn.OpenAsync();
+
+            using(var com = project.UpdateCommand(conn))
+            {
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new Project(r);
+                com.Dispose();
+            }
+
+            await conn.CloseAsync();
+            return res;
+        }
+
         #endregion
     }
 }
