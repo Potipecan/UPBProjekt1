@@ -39,20 +39,20 @@ namespace Database
 
     }
 
-    public class Post : Table
+    public class Region : Table
     {
         public string Name { get; set; }
         public string Code { get; set; }
         public string Abbr { get; set; }
 
-        public Post(string name, string postid, string abbr = null, int id = -1) : base(id)
+        public Region(string name, string postid, string abbr = null, int id = -1) : base(id)
         {
             Name = name;
             Code = postid;
             Abbr = abbr;
         }
 
-        public Post(NpgsqlDataReader r) : base(r)
+        public Region(NpgsqlDataReader r) : base(r)
         {
             Name = r.GetString(1);
             Code = r.GetString(2);

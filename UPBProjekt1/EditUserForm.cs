@@ -14,7 +14,7 @@ namespace UPBProjekt1
 {
     public partial class EditUserForm : Form
     {
-        private Database.Post Post;
+        private Database.Region Post;
 
         public EditUserForm()
         {
@@ -28,7 +28,7 @@ namespace UPBProjekt1
 
         private void UpdateFields()
         {
-            App.POs.ForEach(r => PostCB.Items.Add($"{r.Code} - {r.Name}"));
+            WorkHoursChecker.POs.ForEach(r => PostCB.Items.Add($"{r.Code} - {r.Name}"));
             var u = Dashboard.CUser;            
 
             NameTB.Text = u.Name;
@@ -36,7 +36,7 @@ namespace UPBProjekt1
             UsernameTB.Text = u.Username;
             EmailTB.Text = u.Email;
             AddressTB.Text = u.Address;
-            PostCB.SelectedIndex = App.POs.FindIndex(r => r.ID == u.Reg_ID);
+            PostCB.SelectedIndex = WorkHoursChecker.POs.FindIndex(r => r.ID == u.Reg_ID);
 
             DarkmodeChkBox.Checked = Dashboard.CSettings.DarkMode;
             FontTB.Text = Dashboard.CSettings.Font;
@@ -46,7 +46,7 @@ namespace UPBProjekt1
         {
             if (PostCB.SelectedIndex > 0)
             {
-                Post = App.POs[PostCB.SelectedIndex];
+                Post = WorkHoursChecker.POs[PostCB.SelectedIndex];
                 PostNameTB.Text = Post.Name;
                 PostCodeTB.Text = Post.Code;
                 PostAbbrTB.Text = Post.Abbr;
@@ -68,47 +68,11 @@ namespace UPBProjekt1
             }
         }
 
-        private async void PostCommitButton_Click(object sender, EventArgs e)
+        private void PostCommitButton_Click(object sender, EventArgs e)
         {
-            if (PostNameTB.Text != "" && PostCodeTB.Text != "")
+            if(PostNameTB.Text != "" && PostCodeTB.Text != "")
             {
-                if (PostCB.SelectedIndex < 0)
-                {
-                    var reg = new Post(PostNameTB.Text, PostCodeTB.Text, PostAbbrTB.Text);
-                    reg = await App.DB.AddPO(reg);
-                    App.POs.Add(reg);
 
-                    PostCB.SelectedIndex = App.POs.FindIndex(r => r.ID == reg.ID);
-                    UpdateFields(); 
-                }
-                else
-                {
-                    var reg = new Post(PostNameTB.Text, PostCodeTB.Text, PostAbbrTB.Text, Post.ID);
-                    reg = await App.DB.UpdatePO(reg);
-
-                    await App.UpdatePOs();
-                    UpdateFields();
-                }
-            }
-            else MessageBox.Show("All fields marked with '*' are mandatory!");
-        }
-
-        private void PostCancelButton_Click(object sender, EventArgs e)
-        {
-            PostCB.SelectedIndex = -1;
-        }
-
-        private async void PostDeleteButton_Click(object sender, EventArgs e)
-        {
-            var ok = MessageBox.Show("Post deletion!", "Warning! Action cannot be undone!\nAre you sure you want to proceed?", MessageBoxButtons.YesNo);
-            if(ok == DialogResult.Yes)
-            {
-                if (await App.DB.DeletePO(Post))
-                {
-                    await App.UpdatePOs();
-                    UpdateFields();
-                }
-                else MessageBox.Show("Task failed.");
             }
         }
     }

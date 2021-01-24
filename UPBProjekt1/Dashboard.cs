@@ -26,7 +26,7 @@ namespace UPBProjekt1
             CUser = user;
             Task.Run(async () =>
             {
-                CSettings = await App.DB.GetSettingForUser(CUser);
+                CSettings = await WorkHoursChecker.DB.GetSettingForUser(CUser);
             }).Wait();
 
             WindowRefresh();
@@ -39,7 +39,7 @@ namespace UPBProjekt1
             if (CSettings.DarkMode) Const.Dark.ApplyTo(this);
             else Const.Light.ApplyTo(this);
 
-            var po = App.POs.Find(p => p.ID == CUser.Reg_ID);
+            var po = WorkHoursChecker.POs.Find(p => p.ID == CUser.Reg_ID);
             UserInfoLabel.Text = $"{CUser.Name}\n{CUser.Surname}\n{CUser.Username}\n{CUser.Email}\n" +
                 $"{CUser.Address}\n{po.Code} - {po.Name}\n{CUser.Projects_Num}\n{CUser.Completed_Num}";
         }
