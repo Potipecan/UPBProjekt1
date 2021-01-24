@@ -208,4 +208,77 @@ namespace Database
             return com;
         }
     }
+
+    public class Project : Table
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Position { get; set; }
+        public bool Active { get; set; }
+        public string Client { get; set; }
+        public double Hours { get; set; }
+        public int UserID { get; set; }
+
+        public Project(
+            string title,
+            string position,
+            bool active,
+            string client,
+            double hours,
+            int userid,
+            string desc = "",
+            int id = -1
+            ) : base(id)
+        {
+            Title = title;
+            Position = position;
+            Active = active;
+            Client = client;
+            Hours = hours;
+            UserID = userid;
+            Description = desc;
+        }
+
+        public Project(NpgsqlDataReader r) : base(r)
+        {
+            Title = r.GetString(1);
+            Description = r.GetString(2);
+            Position = r.GetString(3);
+            Active = r.GetBoolean(4);
+            Client = r.GetString(5);
+            Hours = r.GetDouble(6);
+            UserID = r.GetInt32(7);
+        }
+
+        public override NpgsqlCommand InsertCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM add_projekt(@title, @position, @client, @userid, @desc, @active);";
+            var com = new NpgsqlCommand(command, conn);
+
+            com.Parameters.AddWithValue("title", Title);
+            com.Parameters.AddWithValue("position", Position);
+            com.Parameters.AddWithValue("client", Client);
+            com.Parameters.AddWithValue("userid", UserID);
+            com.Parameters.AddWithValue("desc", Description != "" ? Description : null);
+            com.Parameters.AddWithValue("active", Active);
+
+            return com;
+        }
+
+        public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
+        {
+            string command = "SELECT * FROM edit_projekt(@id, @title, @position, @client, @userid, @desc, @active);";
+            var com = new NpgsqlCommand(command, conn);
+
+            com.Parameters.AddWithValue("id", ID);
+            com.Parameters.AddWithValue("title", Title);
+            com.Parameters.AddWithValue("position", Position);
+            com.Parameters.AddWithValue("client", Client);
+            com.Parameters.AddWithValue("userid", UserID);
+            com.Parameters.AddWithValue("desc", Description != "" ? Description : null);
+            com.Parameters.AddWithValue("active", Active);
+
+            return com;
+        }
+    }
 }
