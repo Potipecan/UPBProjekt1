@@ -47,7 +47,7 @@ namespace Database
         {
             Region res = null;
             await conn.OpenAsync();
-            using(var com = po.UpdateCommand(conn))
+            using (var com = po.UpdateCommand(conn))
             {
                 var r = await com.ExecuteReaderAsync();
                 if (await r.ReadAsync()) res = new Region(r);
@@ -230,6 +230,34 @@ namespace Database
             await conn.CloseAsync();
             return res;
         }
-        #endregion    
+        #endregion
+
+        #region Projects CRUD
+        public async Task<List<Project>> GetProjectFromUser(User user, int proid = -1)
+        {
+            var res = new List<Project>();
+            await conn.OpenAsync();
+            string command = "SELECT * FROM get_projekti(@userid, @proid)";
+
+            using(var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("userid", user.ID);
+                com.Parameters.AddWithValue("proid", proid > 0 ? proid.ToString() : null);
+
+                var r = await com.ExecuteReaderAsync();
+                while(await r.ReadAsync())
+                {
+                    res.Add(new Project(r));
+                }
+
+                com.Dispose();
+            }
+
+            await conn.CloseAsync();
+
+            return res;
+        }
+
+        #endregion
     }
 }
