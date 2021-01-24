@@ -314,5 +314,87 @@ namespace Database
         }
 
         #endregion
+
+        #region Sessions CRUD
+
+        public async Task<Session> GetCurrentSession(User user)
+        {
+            Session res = null;
+            string command = "SELECT * FROM get_current_session(@uid);";
+            await conn.OpenAsync();
+            using (var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("uid", user.ID);
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new Session(r);
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+            return res;
+        }
+
+        public async Task<List<Session>> GetSessionsForProject(Project project)
+        {
+            var res = new List<Session>();
+            string command = "SELECT * FROM get_delo(@prid);";
+            await conn.OpenAsync();
+            using (var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("prid", project.ID);
+                var r = await com.ExecuteReaderAsync();
+                while(await r.ReadAsync())
+                {
+                    res.Add(new Session(r));
+                }
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+            return res;
+        }
+
+        public async Task<Session> NewSession(Session session)
+        {
+            Session res = null;
+            await conn.OpenAsync();
+            using(var com = session.InsertCommand(conn))
+            {
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new Session(r);
+            }
+            await conn.CloseAsync();
+            return res;
+        }
+
+        public async Task<Session> EditSession(Session session)
+        {
+            Session res = null;
+            await conn.OpenAsync();
+            using (var com = session.UpdateCommand(conn))
+            {
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new Session(r);
+            }
+            await conn.CloseAsync();
+            return res;
+        }
+
+        public async Task<bool> DeleteSession(Session session)
+        {
+            bool res = false;
+            string command = "SELECT * FROM delete_delo(@id, @projid);";
+            await conn.OpenAsync();
+            using (var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("id", session.ID);
+                com.Parameters.AddWithValue("projid", session.ProjectID);
+
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = r.GetBoolean(0);
+            }
+            await conn.CloseAsync();
+            return res;
+        }
+
+        #endregion
     }
 }
