@@ -292,6 +292,27 @@ namespace Database
             return res;
         }
 
+        public async Task<bool> DeleteProject(Project project)
+        {
+            bool res = false;
+            string command = "SELECT * FROM delete_projekt(@userid, @proid);";
+            await conn.OpenAsync();
+
+            using(var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("userid", project.UserID);
+                com.Parameters.AddWithValue("proid", project.ID);
+
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = r.GetBoolean(0);
+
+                com.Dispose();
+            }
+
+            await conn.CloseAsync();
+            return res;
+        }
+
         #endregion
     }
 }
