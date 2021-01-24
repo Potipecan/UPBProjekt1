@@ -45,34 +45,19 @@ BEGIN
 END;
 $$ LANGUAGE 'plpgsql'
 
--- odstrani uporabnika - izbris računa
+-- odstrani uporabnika - izbris računa in vseh povezanih informacij
 CREATE OR REPLACE FUNCTION delete_user(a_id INT, a_geslo VARCHAR(100))
 RETURNS BOOLEAN AS
 $$
 DECLARE
-	po polozaji%ROWTYPE; 
+	num INT; 
 BEGIN
-	IF (SELECT id FROM uporabniki WHERE id = a_id AND geslo = MD5(a_geslo)) IS NULL
-	THEN
-		RETURN FALSE;
-	END IF;
-
-	FOR po IN SELECT * FROM polozaji WHERE uporabnik_id = a_id
-	LOOP
-		DELETE FROM dela
-		WHERE polozaj_id = po.id;
-		
-		DELETE FROM polozaji
-		WHERE id = po.id;
-	END LOOP;	
-	
-	DELETE FROM nastavitve
-	WHERE uporabnik_id = a_id;
-	
 	DELETE FROM uporabniki
-	WHERE id = a_id;
+	WHERE id = a_id AND geslo = md5(a_geslo)
+	RETURNING * INTO num;
 	
-	RETURN TRUE;
+	IF num > 0 THEN RETURN TRUE;
+	ELSE RETURN FALSE; END IF;
 END;
 $$ LANGUAGE 'plpgsql';
 
