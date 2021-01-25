@@ -93,3 +93,12 @@ BEGIN
 	RETURN NEXT res;
 END;
 $$ LANGUAGE 'plpgsql';
+
+CREATE FUNCTION get_user_by_id(a_id INT)
+RETURNS SETOF uporabniki AS
+$$
+BEGIN
+	RETURN QUERY
+	SELECT * FROM uporabniki WHERE id = a_id;
+END;
+$$ LANGUAGE 'plpgsql';
