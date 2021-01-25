@@ -46,6 +46,7 @@ namespace UPBProjekt1
                     ClientTB.Text = CProject.Client;
                     ActiveChkB.Checked = CProject.Active;
                     SessionCommitButton.Enabled = true;
+                    CommitProjectButton.Text = "Edit";
                 }
                 else
                 {
@@ -55,6 +56,7 @@ namespace UPBProjekt1
                     ClientTB.Text = "";
                     ActiveChkB.Checked = false;
                     SessionCommitButton.Enabled = CSession != null;
+                    CommitProjectButton.Text = "Add";
                 }
             }
         }
@@ -68,8 +70,13 @@ namespace UPBProjekt1
                 if (value != null)
                 {
                     WorkSessionLabel.Text = $"{CProjects.Find(p => p.ID == CSession.ProjectID).Title}, since {CSession.From}.";
+                    SessionCommitButton.Text = "Finish session.";
                 }
-                else WorkSessionLabel.Text = "No session in progress. Select a project to start a new session.";
+                else
+                {
+                    WorkSessionLabel.Text = "No session in progress. Select a project to start a new session.";
+                    SessionCommitButton.Text = "Begin a new session.";
+                }
             }
         }
 
@@ -84,8 +91,10 @@ namespace UPBProjekt1
             Task.Run(async () =>
             {
                 CSettings = await App.DB.GetSettingForUser(CUser);
+                CSession = await App.DB.GetCurrentSession(CUser);
             }).Wait();
 
+            GetProjects();
             WindowRefresh();
         }
 
@@ -97,6 +106,7 @@ namespace UPBProjekt1
             {
                 CUser = user;
                 WindowRefresh();
+
             }
             return res;
         }
@@ -115,8 +125,22 @@ namespace UPBProjekt1
 
             if (CSettings.DarkMode) Const.Dark.ApplyTo(this);
             else Const.Light.ApplyTo(this);
+        }
 
-           
+        private void RefreshProjectsLB()
+        {
+            ProjectsLB.Items.Clear();
+            ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 4} | {4, 2}", "Title", "Client", "Positon", "Hours", "Status"));
+            foreach (var p in CProjects)
+            {
+                ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 4} | {4, 2}", p.Title, p.Client, p.Position, p.Hours, p.Active ? "WIP" : "COM"));
+            }
+        }
+
+        private async void GetProjects()
+        {
+            CProjects = await App.DB.GetProjectFromUser(CUser);
+            RefreshProjectsLB();
         }
 
         private void EditProfileButton_Click(object sender, EventArgs e)
@@ -148,6 +172,7 @@ namespace UPBProjekt1
                     pro = await App.DB.AddProject(pro);
                     CProjects.Add(pro);
 
+                    CUser = await App.DB.GetUserByID(CUser.ID);
                     RefreshProjectsLB();
                     ProjectsLB.SelectedIndex = CProjects.FindIndex(p => p.ID == pro.ID) + 1;
                 }
@@ -155,26 +180,64 @@ namespace UPBProjekt1
                 {
                     var pro = new Project(CProject.Title, CProject.Position, CProject.Active, CProject.Client, CProject.Hours, CProject.UserID, CProject.Description, CProject.ID);
                     pro = await App.DB.EditProject(pro);
-                    if (pro != null) MessageBox.Show("Success!");
+                    if (pro != null)
+                    {
+                        MessageBox.Show("Success!");
+                        CUser = await App.DB.GetUserByID(CUser.ID);
+                    }
                     else MessageBox.Show("Action failed");
                 }
             }
             else MessageBox.Show("All fields marked with '*' must be filled out.");
         }
 
-        private void RefreshProjectsLB()
-        {
-            ProjectsLB.Items.Clear();
-            ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 4} | {4, 2}", "Title", "Client", "Positon", "Hours", "Status"));
-            foreach(var p in CProjects)
-            {
-                ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 4} | {4, 2}", p.Title, p.Client, p.Position, p.Hours, p.Active ? "WIP" : "COM"));
-            }
-        }
-
         private void ProjectsLB_SelectedIndexChanged(object sender, EventArgs e)
         {
             CProject = ProjectsLB.SelectedIndex > 0 ? CProjects[ProjectsLB.SelectedIndex - 1] : null;
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            ProjectsLB.SelectedIndex = -1;
+        }
+
+        private async void DeleteProjectButton_Click(object sender, EventArgs e)
+        {
+            if (await App.DB.DeleteProject(CProject))
+            {
+                MessageBox.Show("Project succesfully deleted.");
+                GetProjects();
+                CSession = await App.DB.GetCurrentSession(CUser);
+            }
+            else MessageBox.Show("Project deletion failed.");
+        }
+
+        private async void SessionCommitButton_Click(object sender, EventArgs e)
+        {
+            if (CProject != null)
+            {
+                if (CSession == null)
+                {
+                    var ses = new Session(DateTime.Now, DateTime.MinValue, CProject.ID, SessionCommentTB.Text);
+                    ses = await App.DB.NewSession(ses);
+                    if (ses != null)
+                    {
+                        CSession = ses;
+                    }
+                    else MessageBox.Show("Error! Session could not start.");
+                }
+                else
+                {
+                    var ses = new Session(CSession.From, DateTime.Now, CSession.ProjectID, CSession.Comment, CSession.ID);
+                    ses = await App.DB.EditSession(ses);
+                    if (ses != null)
+                    {
+                        CSession = null;
+                        CUser = await App.DB.GetUserByID(CUser.ID);
+                    }
+                    else MessageBox.Show("Error! Session could not be closed.");
+                }
+            }
         }
     }
 }

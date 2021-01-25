@@ -196,6 +196,22 @@ namespace Database
 
             return res;
         }
+
+        public async Task<User> GetUserByID(int id)
+        {
+            User res = null;
+            string command = "SELECT * FROM get_user_by_id(@id);";
+            await conn.OpenAsync();
+            using (var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("id", id);
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = new User(r);
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+            return res;
+        }
         #endregion
 
         #region Settings RU

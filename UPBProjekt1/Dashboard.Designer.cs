@@ -53,6 +53,7 @@ namespace UPBProjekt1
             this.PositionTB = new System.Windows.Forms.TextBox();
             this.ClientTB = new System.Windows.Forms.TextBox();
             this.TitleTB = new System.Windows.Forms.TextBox();
+            this.SessionCommentTB = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -114,6 +115,7 @@ namespace UPBProjekt1
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.SessionCommentTB);
             this.groupBox2.Controls.Add(this.SessionCommitButton);
             this.groupBox2.Controls.Add(this.WorkSessionLabel);
             this.groupBox2.Location = new System.Drawing.Point(392, 12);
@@ -131,6 +133,7 @@ namespace UPBProjekt1
             this.SessionCommitButton.TabIndex = 1;
             this.SessionCommitButton.Text = "Begin new session";
             this.SessionCommitButton.UseVisualStyleBackColor = true;
+            this.SessionCommitButton.Click += new System.EventHandler(this.SessionCommitButton_Click);
             // 
             // WorkSessionLabel
             // 
@@ -174,7 +177,7 @@ namespace UPBProjekt1
             this.groupBox3.Size = new System.Drawing.Size(374, 331);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Project GroupBox";
+            this.groupBox3.Text = "Project";
             // 
             // BrowseSessionsBTN
             // 
@@ -193,6 +196,7 @@ namespace UPBProjekt1
             this.ClearButton.TabIndex = 12;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // DeleteProjectButton
             // 
@@ -202,6 +206,7 @@ namespace UPBProjekt1
             this.DeleteProjectButton.TabIndex = 11;
             this.DeleteProjectButton.Text = "Delete";
             this.DeleteProjectButton.UseVisualStyleBackColor = true;
+            this.DeleteProjectButton.Click += new System.EventHandler(this.DeleteProjectButton_Click);
             // 
             // CommitProjectButton
             // 
@@ -296,6 +301,14 @@ namespace UPBProjekt1
             this.TitleTB.Size = new System.Drawing.Size(219, 22);
             this.TitleTB.TabIndex = 0;
             // 
+            // SessionCommentTB
+            // 
+            this.SessionCommentTB.Location = new System.Drawing.Point(177, 72);
+            this.SessionCommentTB.Multiline = true;
+            this.SessionCommentTB.Name = "SessionCommentTB";
+            this.SessionCommentTB.Size = new System.Drawing.Size(213, 37);
+            this.SessionCommentTB.TabIndex = 2;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -343,5 +356,6 @@ namespace UPBProjekt1
         private System.Windows.Forms.TextBox PositionTB;
         private System.Windows.Forms.TextBox ClientTB;
         private System.Windows.Forms.TextBox TitleTB;
+        private System.Windows.Forms.TextBox SessionCommentTB;
     }
 }
