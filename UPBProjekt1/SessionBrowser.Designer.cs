@@ -48,6 +48,7 @@ namespace UPBProjekt1
             this.SessionsLB.Name = "SessionsLB";
             this.SessionsLB.Size = new System.Drawing.Size(452, 450);
             this.SessionsLB.TabIndex = 0;
+            this.SessionsLB.SelectedIndexChanged += new System.EventHandler(this.SessionsLB_SelectedIndexChanged);
             // 
             // SessionInfoGB
             // 
@@ -105,6 +106,7 @@ namespace UPBProjekt1
             this.DeleteSessionButton.TabIndex = 3;
             this.DeleteSessionButton.Text = "Delete";
             this.DeleteSessionButton.UseVisualStyleBackColor = true;
+            this.DeleteSessionButton.Click += new System.EventHandler(this.DeleteSessionButton_Click);
             // 
             // SessionBrowser
             // 
