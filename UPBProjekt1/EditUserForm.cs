@@ -111,5 +111,42 @@ namespace UPBProjekt1
                 else MessageBox.Show("Task failed.");
             }
         }
+
+        private async void SaveButton_Click(object sender, EventArgs e)
+        {
+            bool check = true;
+            foreach(var c in UserInfoGB.Controls)
+            {
+                if(c != NewPassChkTB && c != NewPassTB)
+                {
+                    if(c.GetType() == typeof(TextBox) && (c as TextBox).Text == "")
+                    {
+                        check = false;
+                        break;
+                    }
+                }
+            }
+            if(!check || Post == null)
+            {
+                MessageBox.Show("All fields marked with '*' are mandatory!");
+                return;
+            }
+
+            var user = new User(NameTB.Text, SurnameTB.Text, UsernameTB.Text, EmailTB.Text, AddressTB.Text, Post.ID, id: Dashboard.CUser.ID);
+            var res = await Dashboard.UpdateUser(user, NewPassTB.Text, PassTB.Text);
+            if (res)
+            {
+                UpdateFields();
+                Close();
+            }
+            else MessageBox.Show("Profile edit failed.\nCheck your info.");
+
+
+        }
+
+        private void EditCancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

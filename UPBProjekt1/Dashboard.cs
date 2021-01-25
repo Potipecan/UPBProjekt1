@@ -15,6 +15,7 @@ namespace UPBProjekt1
     {
         public static User CUser { get; set; }
         public static Settings CSettings { get; set; }
+        private static Dashboard This;
 
         public Dashboard()
         {
@@ -23,6 +24,7 @@ namespace UPBProjekt1
 
         public Dashboard(User user) : this()
         {
+            This = this;
             CUser = user;
             Task.Run(async () =>
             {
@@ -30,6 +32,18 @@ namespace UPBProjekt1
             }).Wait();
 
             WindowRefresh();
+        }
+
+        public static async Task<bool> UpdateUser(User user, string newpass, string pass)
+        {
+            user = await App.DB.UpdateUser(user, newpass, pass);
+            bool res = user != null;
+            if (res)
+            {
+                CUser = user;
+                This.WindowRefresh();
+            }
+            return res;
         }
 
         private void WindowRefresh()

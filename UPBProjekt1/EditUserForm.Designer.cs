@@ -67,6 +67,7 @@ namespace UPBProjekt1
             this.EditCancelButton = new System.Windows.Forms.Button();
             this.DeleteAccButton = new System.Windows.Forms.Button();
             this.FontSelector = new System.Windows.Forms.FontDialog();
+            this.BrowseArchiveButton = new System.Windows.Forms.Button();
             this.UserInfoGB.SuspendLayout();
             this.PostGB.SuspendLayout();
             this.SettingsGB.SuspendLayout();
@@ -418,6 +419,7 @@ namespace UPBProjekt1
             this.SaveButton.TabIndex = 20;
             this.SaveButton.Text = "Save changes";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // EditCancelButton
             // 
@@ -427,6 +429,7 @@ namespace UPBProjekt1
             this.EditCancelButton.TabIndex = 21;
             this.EditCancelButton.Text = "Cancel";
             this.EditCancelButton.UseVisualStyleBackColor = true;
+            this.EditCancelButton.Click += new System.EventHandler(this.EditCancelButton_Click);
             // 
             // DeleteAccButton
             // 
@@ -437,11 +440,21 @@ namespace UPBProjekt1
             this.DeleteAccButton.Text = "Delete account";
             this.DeleteAccButton.UseVisualStyleBackColor = true;
             // 
+            // BrowseArchiveButton
+            // 
+            this.BrowseArchiveButton.Location = new System.Drawing.Point(480, 308);
+            this.BrowseArchiveButton.Name = "BrowseArchiveButton";
+            this.BrowseArchiveButton.Size = new System.Drawing.Size(150, 41);
+            this.BrowseArchiveButton.TabIndex = 23;
+            this.BrowseArchiveButton.Text = "Revert to archived";
+            this.BrowseArchiveButton.UseVisualStyleBackColor = true;
+            // 
             // EditUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BrowseArchiveButton);
             this.Controls.Add(this.DeleteAccButton);
             this.Controls.Add(this.EditCancelButton);
             this.Controls.Add(this.SaveButton);
@@ -500,5 +513,6 @@ namespace UPBProjekt1
         private System.Windows.Forms.TextBox FontTB;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.FontDialog FontSelector;
+        private System.Windows.Forms.Button BrowseArchiveButton;
     }
 }
