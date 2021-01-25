@@ -35,24 +35,24 @@ namespace UPBProjekt1
             this.UserInfoLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ProjectsLB = new System.Windows.Forms.ListBox();
-            this.WorkSessionLabel = new System.Windows.Forms.Label();
             this.SessionCommitButton = new System.Windows.Forms.Button();
+            this.WorkSessionLabel = new System.Windows.Forms.Label();
+            this.ProjectsLB = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.TitleTB = new System.Windows.Forms.TextBox();
-            this.ClientTB = new System.Windows.Forms.TextBox();
-            this.PositionTB = new System.Windows.Forms.TextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.DescTB = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ActiveChkB = new System.Windows.Forms.CheckBox();
-            this.CommitProjectButton = new System.Windows.Forms.Button();
-            this.DeleteProjectButton = new System.Windows.Forms.Button();
-            this.ClearButton = new System.Windows.Forms.Button();
             this.BrowseSessionsBTN = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.DeleteProjectButton = new System.Windows.Forms.Button();
+            this.CommitProjectButton = new System.Windows.Forms.Button();
+            this.ActiveChkB = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DescTB = new System.Windows.Forms.TextBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.PositionTB = new System.Windows.Forms.TextBox();
+            this.ClientTB = new System.Windows.Forms.TextBox();
+            this.TitleTB = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -123,14 +123,14 @@ namespace UPBProjekt1
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Work session";
             // 
-            // ProjectsLB
+            // SessionCommitButton
             // 
-            this.ProjectsLB.FormattingEnabled = true;
-            this.ProjectsLB.ItemHeight = 16;
-            this.ProjectsLB.Location = new System.Drawing.Point(393, 139);
-            this.ProjectsLB.Name = "ProjectsLB";
-            this.ProjectsLB.Size = new System.Drawing.Size(395, 436);
-            this.ProjectsLB.TabIndex = 2;
+            this.SessionCommitButton.Location = new System.Drawing.Point(6, 72);
+            this.SessionCommitButton.Name = "SessionCommitButton";
+            this.SessionCommitButton.Size = new System.Drawing.Size(149, 37);
+            this.SessionCommitButton.TabIndex = 1;
+            this.SessionCommitButton.Text = "Begin new session";
+            this.SessionCommitButton.UseVisualStyleBackColor = true;
             // 
             // WorkSessionLabel
             // 
@@ -143,14 +143,15 @@ namespace UPBProjekt1
             this.WorkSessionLabel.Text = "label";
             this.WorkSessionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // SessionCommitButton
+            // ProjectsLB
             // 
-            this.SessionCommitButton.Location = new System.Drawing.Point(6, 72);
-            this.SessionCommitButton.Name = "SessionCommitButton";
-            this.SessionCommitButton.Size = new System.Drawing.Size(149, 37);
-            this.SessionCommitButton.TabIndex = 1;
-            this.SessionCommitButton.Text = "Begin new session";
-            this.SessionCommitButton.UseVisualStyleBackColor = true;
+            this.ProjectsLB.FormattingEnabled = true;
+            this.ProjectsLB.ItemHeight = 16;
+            this.ProjectsLB.Location = new System.Drawing.Point(393, 139);
+            this.ProjectsLB.Name = "ProjectsLB";
+            this.ProjectsLB.Size = new System.Drawing.Size(395, 436);
+            this.ProjectsLB.TabIndex = 2;
+            this.ProjectsLB.SelectedIndexChanged += new System.EventHandler(this.ProjectsLB_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -175,77 +176,42 @@ namespace UPBProjekt1
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Project GroupBox";
             // 
-            // TitleTB
+            // BrowseSessionsBTN
             // 
-            this.TitleTB.Location = new System.Drawing.Point(149, 21);
-            this.TitleTB.Name = "TitleTB";
-            this.TitleTB.Size = new System.Drawing.Size(219, 22);
-            this.TitleTB.TabIndex = 0;
+            this.BrowseSessionsBTN.Location = new System.Drawing.Point(10, 269);
+            this.BrowseSessionsBTN.Name = "BrowseSessionsBTN";
+            this.BrowseSessionsBTN.Size = new System.Drawing.Size(139, 30);
+            this.BrowseSessionsBTN.TabIndex = 13;
+            this.BrowseSessionsBTN.Text = "Browse sessions";
+            this.BrowseSessionsBTN.UseVisualStyleBackColor = true;
             // 
-            // ClientTB
+            // ClearButton
             // 
-            this.ClientTB.Location = new System.Drawing.Point(149, 49);
-            this.ClientTB.Name = "ClientTB";
-            this.ClientTB.Size = new System.Drawing.Size(219, 22);
-            this.ClientTB.TabIndex = 1;
+            this.ClearButton.Location = new System.Drawing.Point(235, 233);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(107, 30);
+            this.ClearButton.TabIndex = 12;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.UseVisualStyleBackColor = true;
             // 
-            // PositionTB
+            // DeleteProjectButton
             // 
-            this.PositionTB.Location = new System.Drawing.Point(149, 77);
-            this.PositionTB.Name = "PositionTB";
-            this.PositionTB.Size = new System.Drawing.Size(219, 22);
-            this.PositionTB.TabIndex = 2;
+            this.DeleteProjectButton.Location = new System.Drawing.Point(122, 233);
+            this.DeleteProjectButton.Name = "DeleteProjectButton";
+            this.DeleteProjectButton.Size = new System.Drawing.Size(107, 30);
+            this.DeleteProjectButton.TabIndex = 11;
+            this.DeleteProjectButton.Text = "Delete";
+            this.DeleteProjectButton.UseVisualStyleBackColor = true;
             // 
-            // maskedTextBox1
+            // CommitProjectButton
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(149, 105);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(0, 2);
-            this.maskedTextBox1.TabIndex = 3;
-            // 
-            // DescTB
-            // 
-            this.DescTB.Location = new System.Drawing.Point(149, 105);
-            this.DescTB.Multiline = true;
-            this.DescTB.Name = "DescTB";
-            this.DescTB.Size = new System.Drawing.Size(219, 82);
-            this.DescTB.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(99, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Title*:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(91, 52);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 17);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Client*:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(76, 80);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 17);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Position*:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(60, 108);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 17);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Description:";
+            this.CommitProjectButton.Location = new System.Drawing.Point(10, 233);
+            this.CommitProjectButton.Name = "CommitProjectButton";
+            this.CommitProjectButton.Size = new System.Drawing.Size(106, 30);
+            this.CommitProjectButton.TabIndex = 10;
+            this.CommitProjectButton.Text = "Add";
+            this.CommitProjectButton.UseVisualStyleBackColor = true;
+            this.CommitProjectButton.Click += new System.EventHandler(this.CommitProjectButton_Click);
             // 
             // ActiveChkB
             // 
@@ -258,41 +224,77 @@ namespace UPBProjekt1
             this.ActiveChkB.Text = "Active";
             this.ActiveChkB.UseVisualStyleBackColor = true;
             // 
-            // CommitProjectButton
+            // label5
             // 
-            this.CommitProjectButton.Location = new System.Drawing.Point(10, 233);
-            this.CommitProjectButton.Name = "CommitProjectButton";
-            this.CommitProjectButton.Size = new System.Drawing.Size(106, 30);
-            this.CommitProjectButton.TabIndex = 10;
-            this.CommitProjectButton.Text = "Add";
-            this.CommitProjectButton.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(60, 108);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 17);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Description:";
             // 
-            // DeleteProjectButton
+            // label4
             // 
-            this.DeleteProjectButton.Location = new System.Drawing.Point(122, 233);
-            this.DeleteProjectButton.Name = "DeleteProjectButton";
-            this.DeleteProjectButton.Size = new System.Drawing.Size(107, 30);
-            this.DeleteProjectButton.TabIndex = 11;
-            this.DeleteProjectButton.Text = "Delete";
-            this.DeleteProjectButton.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(76, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Position*:";
             // 
-            // ClearButton
+            // label3
             // 
-            this.ClearButton.Location = new System.Drawing.Point(235, 233);
-            this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(107, 30);
-            this.ClearButton.TabIndex = 12;
-            this.ClearButton.Text = "Clear";
-            this.ClearButton.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(91, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 17);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Client*:";
             // 
-            // BrowseSessionsBTN
+            // label2
             // 
-            this.BrowseSessionsBTN.Location = new System.Drawing.Point(10, 269);
-            this.BrowseSessionsBTN.Name = "BrowseSessionsBTN";
-            this.BrowseSessionsBTN.Size = new System.Drawing.Size(139, 30);
-            this.BrowseSessionsBTN.TabIndex = 13;
-            this.BrowseSessionsBTN.Text = "Browse sessions";
-            this.BrowseSessionsBTN.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(99, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Title*:";
+            // 
+            // DescTB
+            // 
+            this.DescTB.Location = new System.Drawing.Point(149, 105);
+            this.DescTB.Multiline = true;
+            this.DescTB.Name = "DescTB";
+            this.DescTB.Size = new System.Drawing.Size(219, 82);
+            this.DescTB.TabIndex = 4;
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(149, 105);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(0, 22);
+            this.maskedTextBox1.TabIndex = 3;
+            // 
+            // PositionTB
+            // 
+            this.PositionTB.Location = new System.Drawing.Point(149, 77);
+            this.PositionTB.Name = "PositionTB";
+            this.PositionTB.Size = new System.Drawing.Size(219, 22);
+            this.PositionTB.TabIndex = 2;
+            // 
+            // ClientTB
+            // 
+            this.ClientTB.Location = new System.Drawing.Point(149, 49);
+            this.ClientTB.Name = "ClientTB";
+            this.ClientTB.Size = new System.Drawing.Size(219, 22);
+            this.ClientTB.TabIndex = 1;
+            // 
+            // TitleTB
+            // 
+            this.TitleTB.Location = new System.Drawing.Point(149, 21);
+            this.TitleTB.Name = "TitleTB";
+            this.TitleTB.Size = new System.Drawing.Size(219, 22);
+            this.TitleTB.TabIndex = 0;
             // 
             // Dashboard
             // 
