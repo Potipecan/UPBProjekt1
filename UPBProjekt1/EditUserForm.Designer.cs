@@ -439,6 +439,7 @@ namespace UPBProjekt1
             this.DeleteAccButton.TabIndex = 22;
             this.DeleteAccButton.Text = "Delete account";
             this.DeleteAccButton.UseVisualStyleBackColor = true;
+            this.DeleteAccButton.Click += new System.EventHandler(this.DeleteAccButton_Click);
             // 
             // BrowseArchiveButton
             // 

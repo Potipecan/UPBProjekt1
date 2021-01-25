@@ -14,13 +14,15 @@ namespace UPBProjekt1
 {
     public partial class EditUserForm : Form
     {
-        private Database.Post Post;
+        private Post Post;
+        private Dashboard Dash;
 
-        public EditUserForm()
+        public EditUserForm(Dashboard dash)
         {
             InitializeComponent();
+            Dash = dash;
 
-            (Dashboard.CSettings.DarkMode ? Const.Dark : Const.Light).ApplyTo(this);
+            (Dash.CSettings.DarkMode ? Const.Dark : Const.Light).ApplyTo(this);
             //Font = new Font()
 
             UpdateFields();
@@ -29,7 +31,7 @@ namespace UPBProjekt1
         private void UpdateFields()
         {
             App.POs.ForEach(r => PostCB.Items.Add($"{r.Code} - {r.Name}"));
-            var u = Dashboard.CUser;            
+            var u = Dash.CUser;            
 
             NameTB.Text = u.Name;
             SurnameTB.Text = u.Surname;
@@ -38,8 +40,8 @@ namespace UPBProjekt1
             AddressTB.Text = u.Address;
             PostCB.SelectedIndex = App.POs.FindIndex(r => r.ID == u.Reg_ID);
 
-            DarkmodeChkBox.Checked = Dashboard.CSettings.DarkMode;
-            FontTB.Text = Dashboard.CSettings.Font;
+            DarkmodeChkBox.Checked = Dash.CSettings.DarkMode;
+            FontTB.Text = Dash.CSettings.Font;
         }
 
         private void PostCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,8 +134,8 @@ namespace UPBProjekt1
                 return;
             }
 
-            var user = new User(NameTB.Text, SurnameTB.Text, UsernameTB.Text, EmailTB.Text, AddressTB.Text, Post.ID, id: Dashboard.CUser.ID);
-            var res = await Dashboard.UpdateUser(user, NewPassTB.Text, PassTB.Text);
+            var user = new User(NameTB.Text, SurnameTB.Text, UsernameTB.Text, EmailTB.Text, AddressTB.Text, Post.ID, id: Dash.CUser.ID);
+            var res = await Dash.UpdateUser(user, NewPassTB.Text, PassTB.Text);
             if (res)
             {
                 UpdateFields();
@@ -147,6 +149,21 @@ namespace UPBProjekt1
         private void EditCancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private async void DeleteAccButton_Click(object sender, EventArgs e)
+        {
+            if(PassTB.Text == "")
+            {
+                MessageBox.Show("Profile edit failed.\nCheck your info.");
+                return;
+            }
+
+            if(await App.DB.DeleteUser(Dash.CUser, PassTB.Text))
+            {
+                MessageBox.Show("Profile succesfully deleted");
+                Dash.Close();
+            }
         }
     }
 }

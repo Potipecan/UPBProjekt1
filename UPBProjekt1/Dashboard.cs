@@ -13,8 +13,8 @@ namespace UPBProjekt1
 {
     public partial class Dashboard : Form
     {
-        public static User CUser { get; set; }
-        public static Settings CSettings { get; set; }
+        public User CUser { get; set; }
+        public Settings CSettings { get; set; }
         private static Dashboard This;
 
         public Dashboard()
@@ -34,16 +34,24 @@ namespace UPBProjekt1
             WindowRefresh();
         }
 
-        public static async Task<bool> UpdateUser(User user, string newpass, string pass)
+        public async Task<bool> UpdateUser(User user, string newpass, string pass)
         {
             user = await App.DB.UpdateUser(user, newpass, pass);
             bool res = user != null;
             if (res)
             {
                 CUser = user;
-                This.WindowRefresh();
+                WindowRefresh();
             }
             return res;
+        }
+
+        public async void DeleteUser(User user, string pass)
+        {
+            if(await App.DB.DeleteUser(user, pass))
+            {
+                This.Close();
+            }
         }
 
         private void WindowRefresh()
