@@ -139,6 +139,16 @@ namespace UPBProjekt1
             if (res)
             {
                 UpdateFields();
+
+                if(FontTB.Text != "" && (DarkmodeChkBox.Checked != Dash.CSettings.DarkMode || FontTB.Text != Dash.CSettings.Font))
+                {
+
+                    var settings = new Settings(Dash.CSettings.ID, Dash.CSettings.UserID, DarkmodeChkBox.Checked, SetFontButton.Text);
+                    settings = await App.DB.SetSettings(settings);
+                    (settings.DarkMode ? Const.Dark : Const.Light).ApplyTo(Dash);
+                   
+
+                }
                 Close();
             }
             else MessageBox.Show("Profile edit failed.\nCheck your info.");
@@ -155,7 +165,7 @@ namespace UPBProjekt1
         {
             if(PassTB.Text == "")
             {
-                MessageBox.Show("Profile edit failed.\nCheck your info.");
+                MessageBox.Show("Profile deletion failed.\nCheck your Password.");
                 return;
             }
 
@@ -164,6 +174,11 @@ namespace UPBProjekt1
                 MessageBox.Show("Profile succesfully deleted");
                 Dash.Close();
             }
+        }
+
+        private void BrowseArchiveButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

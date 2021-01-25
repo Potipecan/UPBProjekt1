@@ -449,6 +449,7 @@ namespace UPBProjekt1
             this.BrowseArchiveButton.TabIndex = 23;
             this.BrowseArchiveButton.Text = "Revert to archived";
             this.BrowseArchiveButton.UseVisualStyleBackColor = true;
+            this.BrowseArchiveButton.Click += new System.EventHandler(this.BrowseArchiveButton_Click);
             // 
             // EditUserForm
             // 
