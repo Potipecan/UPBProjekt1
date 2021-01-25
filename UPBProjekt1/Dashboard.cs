@@ -68,7 +68,15 @@ namespace UPBProjekt1
 
         private void EditProfileButton_Click(object sender, EventArgs e)
         {
+            var ef = new EditUserForm(this);
+            ef.FormClosed += Ef_FormClosed;
+            Enabled = false;
+            ef.Show();
+        }
 
+        private void Ef_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Enabled = true;
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)

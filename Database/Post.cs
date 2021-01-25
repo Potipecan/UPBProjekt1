@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace Database
 {
@@ -137,12 +138,12 @@ namespace Database
         {
             string command = "SELECT * FROM register_user(@name, @surname, @uname, @email, @address, @postid, @pass);";
             var com = new NpgsqlCommand(command, conn);
-            com.Parameters.AddWithValue("name", Name);
-            com.Parameters.AddWithValue("surname", Surname);
-            com.Parameters.AddWithValue("uname", Username);
-            com.Parameters.AddWithValue("email", Email);
+            com.Parameters.AddWithValue("name", NpgsqlDbType.Varchar, Name);
+            com.Parameters.AddWithValue("surname", NpgsqlDbType.Varchar, Surname);
+            com.Parameters.AddWithValue("uname", NpgsqlDbType.Varchar, Username);
+            com.Parameters.AddWithValue("email", NpgsqlDbType.Varchar, Email);
             com.Parameters.AddWithValue("postid", Reg_ID);
-            com.Parameters.AddWithValue("address", Address);
+            com.Parameters.AddWithValue("address", NpgsqlDbType.Varchar, Address);
 
             return com;
         }

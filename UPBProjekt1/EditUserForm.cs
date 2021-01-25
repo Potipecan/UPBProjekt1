@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -46,9 +47,10 @@ namespace UPBProjekt1
 
         private void PostCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (PostCB.SelectedIndex > 0)
+            if (PostCB.SelectedIndex >= 0)
             {
                 Post = App.POs[PostCB.SelectedIndex];
+                Debug.WriteLine(Post.ToString());
                 PostNameTB.Text = Post.Name;
                 PostCodeTB.Text = Post.Code;
                 PostAbbrTB.Text = Post.Abbr;
@@ -152,8 +154,6 @@ namespace UPBProjekt1
                 Close();
             }
             else MessageBox.Show("Profile edit failed.\nCheck your info.");
-
-
         }
 
         private void EditCancelButton_Click(object sender, EventArgs e)
@@ -165,7 +165,7 @@ namespace UPBProjekt1
         {
             if(PassTB.Text == "")
             {
-                MessageBox.Show("Profile deletion failed.\nCheck your Password.");
+                MessageBox.Show("Profile deletion failed.\nPassword must be filled out.");
                 return;
             }
 
