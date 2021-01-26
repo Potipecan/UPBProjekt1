@@ -14,7 +14,7 @@ namespace UPBProjekt1
     public partial class App : Form
     {
         public static DatabaseManager DB;
-        public static List<Database.Post> POs;
+        public static List<Post> POs;
 
         public App()
         {
@@ -36,8 +36,10 @@ namespace UPBProjekt1
         {
             if (UsernameTB.Text != "" && PasswordTB.Text != "")
             {
+                LoginButton.Enabled = false;
                 var user = await DB.GetUser(UsernameTB.Text, PasswordTB.Text);
                 ToDashboard(user);
+                LoginButton.Enabled = true;
             }
             else MessageBox.Show("Fill out all fields.");
         }

@@ -15,7 +15,35 @@ namespace UPBProjekt1
 {
     public partial class EditUserForm : Form
     {
-        private Post Post;
+        private Post post;
+        private Post Post
+        {
+            get => post;
+            set
+            {
+                post = value;
+                if(value != null)
+                {
+                    PostNameTB.Text = Post.Name;
+                    PostCodeTB.Text = Post.Code;
+                    PostAbbrTB.Text = Post.Abbr;
+
+                    PostCommitButton.Text = "Update";
+                    PostDeleteButton.Enabled = true;
+                    PostCancelButton.Text = "Clear";
+                }
+                else
+                {
+                    PostNameTB.Text = "";
+                    PostCodeTB.Text = "";
+                    PostAbbrTB.Text = "";
+
+                    PostCommitButton.Text = "Add";
+                    PostDeleteButton.Enabled = false;
+                    PostCancelButton.Text = "Cancel";
+                }
+            }
+        }
         public Dashboard Dash;
 
         public EditUserForm(Dashboard dash)
@@ -50,25 +78,10 @@ namespace UPBProjekt1
             if (PostCB.SelectedIndex >= 0)
             {
                 Post = App.POs[PostCB.SelectedIndex];
-                Debug.WriteLine(Post.ToString());
-                PostNameTB.Text = Post.Name;
-                PostCodeTB.Text = Post.Code;
-                PostAbbrTB.Text = Post.Abbr;
-
-                PostCommitButton.Text = "Update";
-                PostDeleteButton.Enabled = true;
-                PostCancelButton.Text = "Clear";
             }
             else
             {
-                Post = null;
-                PostNameTB.Text = "";
-                PostCodeTB.Text = "";
-                PostAbbrTB.Text = "";
-
-                PostCommitButton.Text = "Add";
-                PostDeleteButton.Enabled = false;
-                PostCancelButton.Text = "Cancel";
+                Post = null;                
             }
         }
 
@@ -80,7 +93,6 @@ namespace UPBProjekt1
                 {
                     var reg = new Post(PostNameTB.Text, PostCodeTB.Text, PostAbbrTB.Text);
                     reg = await App.DB.AddPO(reg);
-                    App.POs.Add(reg);
 
                     PostCB.SelectedIndex = App.POs.FindIndex(r => r.ID == reg.ID);
                     UpdateFields(); 

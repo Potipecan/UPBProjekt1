@@ -36,7 +36,7 @@ namespace UPBProjekt1
             Task.Run(async () =>
             {
                 Archives = await App.DB.GetArchivesForUser(Editor.Dash.CUser);
-            });
+            }).Wait();
             // dd/MM/yy hh:mm:ss
             ArchiveLB.Items.Add(String.Format("{0, 20} | {1, 20} | {2, 20} | {3, 30} | {4, 20} | {5, 30} | {6, 17}", "Name", "Surname", "Username", "Email", "Address", "Post", "Date"));
             var post = App.POs.Find(p => p.ID == Editor.Dash.CUser.RegID);

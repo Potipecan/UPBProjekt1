@@ -214,9 +214,9 @@ namespace UPBProjekt1
 
         private async void SessionCommitButton_Click(object sender, EventArgs e)
         {
-            if (CProject != null)
+            if (CSession == null)
             {
-                if (CSession == null)
+                if (CProject != null)
                 {
                     var ses = new Session(DateTime.Now, DateTime.MinValue, CProject.ID, SessionCommentTB.Text);
                     ses = await App.DB.NewSession(ses);
