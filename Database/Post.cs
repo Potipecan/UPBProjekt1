@@ -14,7 +14,8 @@ namespace Database
         public int ID { get; set; }
 
 
-        public Table(int id = -1) {
+        public Table(int id = -1)
+        {
             ID = id;
         }
 
@@ -26,7 +27,7 @@ namespace Database
         public override string ToString()
         {
             string res = "";
-            foreach(var p in GetType().GetProperties())
+            foreach (var p in GetType().GetProperties())
             {
                 object val = p.GetValue(this);
                 res += ((val != null) ? val.ToString() : "null") + ";";
@@ -103,7 +104,7 @@ namespace Database
             string address,
             int reg_id,
             int proj_num = 0,
-            int comp_num = 0,            
+            int comp_num = 0,
             int id = -1
             ) : base(id)
         {
@@ -331,4 +332,74 @@ namespace Database
             return com;
         }
     }
+
+    public class Archive : Table
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public int Reg_ID { get; set; }
+        public int Projects_Num { get; set; }
+        public int Completed_Num { get; set; }
+        public DateTime Date { get; set; }
+        public int OriginalID { get; set; }
+
+        public Archive(
+            string name,
+            string surname,
+            string username,
+            string email,
+            string address,
+            int reg_id,
+            DateTime date,
+            int originalid,
+            int proj_num = 0,
+            int comp_num = 0,
+            int id = -1
+            ) : base(id)
+        {
+            Name = name;
+            Surname = surname;
+            Username = username;
+            Email = email;
+            Address = address;
+            Reg_ID = reg_id;
+            Projects_Num = proj_num;
+            Completed_Num = comp_num;
+            OriginalID = originalid;
+            Date = date;
+        }
+
+        public Archive(NpgsqlDataReader r)
+        {
+            Name = r.GetString(1);
+            Surname = r.GetString(2);
+            Username = r.GetString(3);
+            Email = r.GetString(4);
+            Address = r.GetString(5);
+            Projects_Num = r.GetInt32(6);
+            Completed_Num = r.GetInt32(7);
+            Date = r.GetDateTime(8);
+            OriginalID = r.GetInt32(9);
+            Reg_ID = r.GetInt32(10);
+        }
+
+        public override NpgsqlCommand InsertCommand(NpgsqlConnection conn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User ToUser()
+        {
+            return new User(Name, Surname, Username, Email, Address, Reg_ID, Projects_Num, Completed_Num, OriginalID);
+        }
+    }
+
 }
