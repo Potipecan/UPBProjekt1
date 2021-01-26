@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION make_archive()
 RETURNS TRIGGER AS
 $$
 BEGIN
-	IF tg_op == 'CREATE'
+	IF tg_op = 'INSERT'
 	OR OLD.ime != NEW.ime
 	OR OLD.priimek != NEW.priimek
 	OR OLD.uime != NEW.uime
