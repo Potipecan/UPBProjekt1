@@ -258,7 +258,8 @@ namespace Database
             using(var com = new NpgsqlCommand(command, conn))
             {
                 com.Parameters.AddWithValue("userid", user.ID);
-                com.Parameters.AddWithValue("proid", proid > 0 ? proid.ToString() : null);
+                if (proid < 1) com.Parameters.AddWithValue("proid", DBNull.Value);
+                else com.Parameters.AddWithValue("proid", proid);
 
                 var r = await com.ExecuteReaderAsync();
                 while(await r.ReadAsync())

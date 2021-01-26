@@ -67,7 +67,8 @@ namespace Database
             var com = new NpgsqlCommand(command, conn);
             com.Parameters.AddWithValue("name", Name);
             com.Parameters.AddWithValue("code", Code);
-            com.Parameters.AddWithValue("abbr", Abbr == "" ? null : Abbr);
+            if (Abbr != "") com.Parameters.AddWithValue("abbr", Abbr);
+            else com.Parameters.AddWithValue("abbr", DBNull.Value);
 
             return com;
         }
@@ -79,7 +80,8 @@ namespace Database
             com.Parameters.AddWithValue("id", ID);
             com.Parameters.AddWithValue("name", Name);
             com.Parameters.AddWithValue("code", Code);
-            com.Parameters.AddWithValue("abbr", Abbr == "" ? null : Abbr);
+            if (Abbr != "") com.Parameters.AddWithValue("abbr", Abbr);
+            else com.Parameters.AddWithValue("abbr", DBNull.Value);
 
             return com;
         }
@@ -244,7 +246,7 @@ namespace Database
         public Project(NpgsqlDataReader r) : base(r)
         {
             Title = r.GetString(1);
-            Description = r.GetString(2);
+            Description = !r.IsDBNull(2) ? r.GetString(2) : "";
             Position = r.GetString(3);
             Active = r.GetBoolean(4);
             Client = r.GetString(5);
@@ -261,7 +263,7 @@ namespace Database
             com.Parameters.AddWithValue("position", Position);
             com.Parameters.AddWithValue("client", Client);
             com.Parameters.AddWithValue("userid", UserID);
-            com.Parameters.AddWithValue("desc", Description != "" ? Description : null);
+            com.Parameters.AddWithValue("desc", Description);
             com.Parameters.AddWithValue("active", Active);
 
             return com;
@@ -277,7 +279,8 @@ namespace Database
             com.Parameters.AddWithValue("position", Position);
             com.Parameters.AddWithValue("client", Client);
             com.Parameters.AddWithValue("userid", UserID);
-            com.Parameters.AddWithValue("desc", Description != "" ? Description : null);
+            if (Description != "") com.Parameters.AddWithValue("desc", Description);
+            else com.Parameters.AddWithValue("desc", DBNull.Value);
             com.Parameters.AddWithValue("active", Active);
 
             return com;
@@ -313,8 +316,11 @@ namespace Database
             var com = new NpgsqlCommand(command, conn);
             com.Parameters.AddWithValue("from", From);
             com.Parameters.AddWithValue("projectid", ProjectID);
-            com.Parameters.AddWithValue("to", To != DateTime.MinValue ? To.ToString("yyyy-MM-dd HH:mm:ss") : null);
-            com.Parameters.AddWithValue("comment", Comment != "" ? Comment : null);
+            if (To != DateTime.MinValue) com.Parameters.AddWithValue("to", To);
+            else com.Parameters.AddWithValue("to", DBNull.Value);
+            if (Comment != "") com.Parameters.AddWithValue("comment", Comment);
+            else com.Parameters.AddWithValue("comment", DBNull.Value);
+
 
             return com;
         }
@@ -326,8 +332,10 @@ namespace Database
             com.Parameters.AddWithValue("id", ID);
             com.Parameters.AddWithValue("from", From);
             com.Parameters.AddWithValue("projectid", ProjectID);
-            com.Parameters.AddWithValue("to", To != DateTime.MinValue ? To.ToString("yyyy-MM-dd HH:mm:ss") : null);
-            com.Parameters.AddWithValue("comment", Comment != "" ? Comment : null);
+            if (To != DateTime.MinValue) com.Parameters.AddWithValue("to", To);
+            else com.Parameters.AddWithValue("to", DBNull.Value);
+            if (Comment != "") com.Parameters.AddWithValue("comment", Comment);
+            else com.Parameters.AddWithValue("comment", DBNull.Value);
 
             return com;
         }

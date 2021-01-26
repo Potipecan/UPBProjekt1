@@ -40,7 +40,6 @@ namespace UPBProjekt1
                 cProject = value;
                 if (value != null)
                 {
-                    CProject = CProjects[ProjectsLB.SelectedIndex - 1];
                     TitleTB.Text = CProject.Title;
                     PositionTB.Text = CProject.Position;
                     ClientTB.Text = CProject.Client;
@@ -50,7 +49,6 @@ namespace UPBProjekt1
                 }
                 else
                 {
-                    CProject = null;
                     TitleTB.Text = "";
                     PositionTB.Text = "";
                     ClientTB.Text = "";
@@ -166,7 +164,7 @@ namespace UPBProjekt1
         {
             if (TitleTB.Text != "" && ClientTB.Text != "" && PositionTB.Text != "")
             {
-                if (CProject != null) // add new Project
+                if (CProject == null) // add new Project
                 {
                     var pro = new Project(TitleTB.Text, PositionTB.Text, ActiveChkB.Checked, ClientTB.Text, 0, CUser.ID);
                     pro = await App.DB.AddProject(pro);
