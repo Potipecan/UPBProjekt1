@@ -412,5 +412,44 @@ namespace Database
         }
 
         #endregion
+
+        #region Archive RD
+
+        public async Task<List<Archive>> GetArchivesForUser(User user)
+        {
+            var res = new List<Archive>();
+            string command = "SELECT * FROM get_arhiv(@uid);";
+            await conn.OpenAsync();
+            using (var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("uid", user.ID);
+                var r = await com.ExecuteReaderAsync();
+                while(await r.ReadAsync())
+                {
+                    res.Add(new Archive(r));
+                }
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+            return res;
+        }
+
+        public async Task<bool> DeleteArchive(Archive archive)
+        {
+            bool res = false;
+            string command = "SELECT * FROM delete_arhiv(@id);";
+            await conn.OpenAsync();
+            using (var com = new NpgsqlCommand(command, conn))
+            {
+                com.Parameters.AddWithValue("id", archive.ID);
+                var r = await com.ExecuteReaderAsync();
+                if (await r.ReadAsync()) res = r.GetBoolean(0);
+                com.Dispose();
+            }
+            await conn.CloseAsync();
+            return res;
+        }
+
+        #endregion
     }
 }
