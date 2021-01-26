@@ -120,7 +120,7 @@ namespace UPBProjekt1
             this.groupBox2.Controls.Add(this.WorkSessionLabel);
             this.groupBox2.Location = new System.Drawing.Point(392, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(396, 120);
+            this.groupBox2.Size = new System.Drawing.Size(597, 120);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Work session";
@@ -137,7 +137,7 @@ namespace UPBProjekt1
             // 
             this.SessionCommitButton.Location = new System.Drawing.Point(6, 72);
             this.SessionCommitButton.Name = "SessionCommitButton";
-            this.SessionCommitButton.Size = new System.Drawing.Size(149, 37);
+            this.SessionCommitButton.Size = new System.Drawing.Size(165, 37);
             this.SessionCommitButton.TabIndex = 1;
             this.SessionCommitButton.Text = "Begin new session";
             this.SessionCommitButton.UseVisualStyleBackColor = true;
@@ -156,11 +156,12 @@ namespace UPBProjekt1
             // 
             // ProjectsLB
             // 
+            this.ProjectsLB.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProjectsLB.FormattingEnabled = true;
-            this.ProjectsLB.ItemHeight = 16;
+            this.ProjectsLB.ItemHeight = 15;
             this.ProjectsLB.Location = new System.Drawing.Point(393, 139);
             this.ProjectsLB.Name = "ProjectsLB";
-            this.ProjectsLB.Size = new System.Drawing.Size(395, 436);
+            this.ProjectsLB.Size = new System.Drawing.Size(596, 424);
             this.ProjectsLB.TabIndex = 2;
             this.ProjectsLB.SelectedIndexChanged += new System.EventHandler(this.ProjectsLB_SelectedIndexChanged);
             // 
@@ -314,7 +315,7 @@ namespace UPBProjekt1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 580);
+            this.ClientSize = new System.Drawing.Size(1001, 580);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.ProjectsLB);
             this.Controls.Add(this.groupBox2);

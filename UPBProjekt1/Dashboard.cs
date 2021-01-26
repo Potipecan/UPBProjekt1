@@ -86,13 +86,15 @@ namespace UPBProjekt1
         public Dashboard(User user) : this()
         {
             CUser = user;
+
             Task.Run(async () =>
             {
+                await GetProjects();
+
                 CSettings = await App.DB.GetSettingForUser(CUser);
                 CSession = await App.DB.GetCurrentSession(CUser);
             }).Wait();
 
-            GetProjects();
             WindowRefresh();
         }
 
@@ -131,11 +133,11 @@ namespace UPBProjekt1
             ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 4} | {4, 2}", "Title", "Client", "Positon", "Hours", "Status"));
             foreach (var p in CProjects)
             {
-                ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 4} | {4, 2}", p.Title, p.Client, p.Position, p.Hours, p.Active ? "WIP" : "COM"));
+                ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 5} | {4, 2}", p.Title, p.Client, p.Position, p.Hours, p.Active ? "WIP" : "COM"));
             }
         }
 
-        private async void GetProjects()
+        private async Task GetProjects()
         {
             CProjects = await App.DB.GetProjectFromUser(CUser);
             RefreshProjectsLB();
@@ -204,7 +206,7 @@ namespace UPBProjekt1
             if (await App.DB.DeleteProject(CProject))
             {
                 MessageBox.Show("Project succesfully deleted.");
-                GetProjects();
+                await GetProjects();
                 CSession = await App.DB.GetCurrentSession(CUser);
             }
             else MessageBox.Show("Project deletion failed.");
@@ -224,17 +226,18 @@ namespace UPBProjekt1
                     }
                     else MessageBox.Show("Error! Session could not start.");
                 }
-                else
+                
+            }
+            else
+            {
+                var ses = new Session(CSession.From, DateTime.Now, CSession.ProjectID, CSession.Comment, CSession.ID);
+                ses = await App.DB.EditSession(ses);
+                if (ses != null)
                 {
-                    var ses = new Session(CSession.From, DateTime.Now, CSession.ProjectID, CSession.Comment, CSession.ID);
-                    ses = await App.DB.EditSession(ses);
-                    if (ses != null)
-                    {
-                        CSession = null;
-                        CUser = await App.DB.GetUserByID(CUser.ID);
-                    }
-                    else MessageBox.Show("Error! Session could not be closed.");
+                    CSession = null;
+                    await GetProjects();
                 }
+                else MessageBox.Show("Error! Session could not be closed.");
             }
         }
 

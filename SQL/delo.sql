@@ -16,7 +16,7 @@ BEGIN
 END;
 $$ LANGUAGE 'plpgsql';
 
-CREATE FUNCTION edit_delo(
+CREATE OR REPLACE FUNCTION edit_delo(
 	a_id INT,
 	a_od TIMESTAMP,
 	a_proid INT,
@@ -33,6 +33,7 @@ BEGIN
 	RETURNING * INTO res;
 	
 	RETURN NEXT res;
+	RETURN;
 END;
 $$ LANGUAGE 'plpgsql';
 
@@ -55,7 +56,7 @@ $$
 DECLARE
 	res INT;
 BEGIN
-	DELETE FROM projekti
+	DELETE FROM delo
 	WHERE id = a_deloid
 	AND projekt_id = a_projekt_id
 	RETURNING * INTO res;

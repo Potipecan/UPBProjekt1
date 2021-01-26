@@ -305,8 +305,8 @@ namespace Database
         public Session(NpgsqlDataReader r) : base(r)
         {
             From = r.GetDateTime(1);
-            To = r.GetDateTime(2);
-            Comment = r.GetString(3);
+            To = !r.IsDBNull(2) ? r.GetDateTime(2) : DateTime.MinValue;
+            Comment = !r.IsDBNull(3) ? r.GetString(3) : "";
             ProjectID = r.GetInt32(4);
         }
 

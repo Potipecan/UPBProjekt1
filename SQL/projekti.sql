@@ -48,7 +48,7 @@ BEGIN
 	RETURN QUERY
 	SELECT * FROM projekti
 	WHERE uporabnik_id = a_userid
-	AND (id = a_projektid OR a_projektid < 0);
+	AND (id = a_projektid OR a_projektid IS NULL);
 END;
 $$ LANGUAGE 'plpgsql';
 

@@ -50,7 +50,8 @@ namespace UPBProjekt1
 
         private void SessionsLB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SSession = Sessions[SessionsLB.SelectedIndex - 1];
+            if (SessionsLB.SelectedIndex > 0) SSession = Sessions[SessionsLB.SelectedIndex - 1];
+            else SSession = null;
         }
 
         private async void DeleteSessionButton_Click(object sender, EventArgs e)

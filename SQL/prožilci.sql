@@ -71,11 +71,11 @@ BEGIN
 	IF tg_op = 'DELETE' AND OLD.d_do IS NOT NULL
 	THEN 
 		pid := OLD.project_id;
-		h := -EXTRACT(epoch FROM OLD.d_do - OLD.d_od) / 3600;
+		h := -EXTRACT(epoch FROM OLD.d_do - OLD.d_od) / 3600.0;
 	ELSE IF NEW.d_do IS NOT NULL
 	THEN
 		pid := NEW.project_id;
-		h := EXTRACT(epoch FROM NEW.d_do - OLD.d_od) / 3600;
+		h := EXTRACT(epoch FROM NEW.d_do - OLD.d_od) / 3600.0;
 	END IF;
 	END IF;
 		
