@@ -16,7 +16,7 @@ namespace UPBProjekt1
     public partial class EditUserForm : Form
     {
         private Post Post;
-        private Dashboard Dash;
+        public Dashboard Dash;
 
         public EditUserForm(Dashboard dash)
         {
@@ -29,17 +29,17 @@ namespace UPBProjekt1
             UpdateFields();
         }
 
-        private void UpdateFields()
+        public void UpdateFields(User u = null)
         {
             App.POs.ForEach(r => PostCB.Items.Add($"{r.Code} - {r.Name}"));
-            var u = Dash.CUser;            
+            if(u == null) u = Dash.CUser;            
 
             NameTB.Text = u.Name;
             SurnameTB.Text = u.Surname;
             UsernameTB.Text = u.Username;
             EmailTB.Text = u.Email;
             AddressTB.Text = u.Address;
-            PostCB.SelectedIndex = App.POs.FindIndex(r => r.ID == u.Reg_ID);
+            PostCB.SelectedIndex = App.POs.FindIndex(r => r.ID == u.RegID);
 
             DarkmodeChkBox.Checked = Dash.CSettings.DarkMode;
             FontTB.Text = Dash.CSettings.Font;

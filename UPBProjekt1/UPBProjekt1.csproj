@@ -80,6 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArchiveBrowser.Designer.cs">
+      <DependentUpon>ArchiveBrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     <Compile Include="SessionBrowser.Designer.cs">
       <DependentUpon>SessionBrowser.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ArchiveBrowser.resx">
+      <DependentUpon>ArchiveBrowser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>

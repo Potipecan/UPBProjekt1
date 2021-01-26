@@ -92,7 +92,7 @@ namespace Database
         public string Username { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
-        public int Reg_ID { get; set; }
+        public int RegID { get; set; }
         public int Projects_Num { get; set; }
         public int Completed_Num { get; set; }
 
@@ -113,7 +113,7 @@ namespace Database
             Username = username;
             Email = email;
             Address = address;
-            Reg_ID = reg_id;
+            RegID = reg_id;
             Projects_Num = proj_num;
             Completed_Num = comp_num;
         }
@@ -125,7 +125,7 @@ namespace Database
             Username = r.GetString(3);
             Email = r.GetString(4);
             Address = r.GetString(5);
-            Reg_ID = r.GetInt32(6);
+            RegID = r.GetInt32(6);
             Projects_Num = r.GetInt32(7);
             Completed_Num = r.GetInt32(8);
         }
@@ -143,7 +143,7 @@ namespace Database
             com.Parameters.AddWithValue("surname", NpgsqlDbType.Varchar, Surname);
             com.Parameters.AddWithValue("uname", NpgsqlDbType.Varchar, Username);
             com.Parameters.AddWithValue("email", NpgsqlDbType.Varchar, Email);
-            com.Parameters.AddWithValue("postid", Reg_ID);
+            com.Parameters.AddWithValue("postid", RegID);
             com.Parameters.AddWithValue("address", NpgsqlDbType.Varchar, Address);
 
             return com;
@@ -162,7 +162,7 @@ namespace Database
             com.Parameters.AddWithValue("surname", Surname);
             com.Parameters.AddWithValue("uname", Username);
             com.Parameters.AddWithValue("email", Email);
-            com.Parameters.AddWithValue("postid", Reg_ID);
+            com.Parameters.AddWithValue("postid", RegID);
             com.Parameters.AddWithValue("address", Address);
 
             return com;

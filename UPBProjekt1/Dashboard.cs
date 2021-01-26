@@ -21,7 +21,7 @@ namespace UPBProjekt1
                 cUser = value;
                 if (value != null)
                 {
-                    var po = App.POs.Find(p => p.ID == CUser.Reg_ID);
+                    var po = App.POs.Find(p => p.ID == CUser.RegID);
                     UserInfoLabel.Text = $"{CUser.Name}\n{CUser.Surname}\n{CUser.Username}\n{CUser.Email}\n" +
                         $"{CUser.Address}\n{po.Code} - {po.Name}\n{CUser.Projects_Num}\n{CUser.Completed_Num}";
                 }
