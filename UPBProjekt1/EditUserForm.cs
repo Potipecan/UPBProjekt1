@@ -178,7 +178,15 @@ namespace UPBProjekt1
 
         private void BrowseArchiveButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var ab = new ArchiveBrowser(this);
+            ab.FormClosed += Ab_FormClosed;
+            Enabled = false;
+            ab.Show();
+        }
+
+        private void Ab_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Enabled = true;
         }
     }
 }
