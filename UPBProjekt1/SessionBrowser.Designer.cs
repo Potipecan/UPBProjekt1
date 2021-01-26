@@ -31,9 +31,9 @@ namespace UPBProjekt1
         {
             this.SessionsLB = new System.Windows.Forms.ListBox();
             this.SessionInfoGB = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.InfoLabel = new System.Windows.Forms.Label();
             this.CommentLabel = new System.Windows.Forms.Label();
+            this.InfoLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.ProjectInfoLabel = new System.Windows.Forms.Label();
             this.DeleteSessionButton = new System.Windows.Forms.Button();
             this.SessionInfoGB.SuspendLayout();
@@ -62,15 +62,12 @@ namespace UPBProjekt1
             this.SessionInfoGB.TabStop = false;
             this.SessionInfoGB.Text = "Session info";
             // 
-            // label1
+            // CommentLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 68);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Start:\r\nEnd:\r\nDuration:\r\nComment:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CommentLabel.Location = new System.Drawing.Point(7, 90);
+            this.CommentLabel.Name = "CommentLabel";
+            this.CommentLabel.Size = new System.Drawing.Size(317, 101);
+            this.CommentLabel.TabIndex = 2;
             // 
             // InfoLabel
             // 
@@ -81,25 +78,30 @@ namespace UPBProjekt1
             this.InfoLabel.TabIndex = 1;
             this.InfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // CommentLabel
+            // label1
             // 
-            this.CommentLabel.Location = new System.Drawing.Point(7, 90);
-            this.CommentLabel.Name = "CommentLabel";
-            this.CommentLabel.Size = new System.Drawing.Size(317, 101);
-            this.CommentLabel.TabIndex = 2;
-            this.CommentLabel.Text = "C";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 68);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Start:\r\nEnd:\r\nDuration:\r\nComment:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ProjectInfoLabel
             // 
             this.ProjectInfoLabel.AutoSize = true;
-            this.ProjectInfoLabel.Location = new System.Drawing.Point(458, 0);
+            this.ProjectInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProjectInfoLabel.Location = new System.Drawing.Point(458, 9);
             this.ProjectInfoLabel.Name = "ProjectInfoLabel";
-            this.ProjectInfoLabel.Size = new System.Drawing.Size(46, 17);
+            this.ProjectInfoLabel.Size = new System.Drawing.Size(79, 29);
             this.ProjectInfoLabel.TabIndex = 2;
             this.ProjectInfoLabel.Text = "label2";
+            this.ProjectInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DeleteSessionButton
             // 
+            this.DeleteSessionButton.Enabled = false;
             this.DeleteSessionButton.Location = new System.Drawing.Point(461, 248);
             this.DeleteSessionButton.Name = "DeleteSessionButton";
             this.DeleteSessionButton.Size = new System.Drawing.Size(125, 33);

@@ -42,6 +42,8 @@ namespace UPBProjekt1
 
             Dash = dash;
 
+            (Dash.CSettings.DarkMode ? Const.Dark : Const.Light).ApplyTo(this);
+
             ProjectInfoLabel.Text = Dash.CProject.Title;
             Task.Run(async () => Sessions = await App.DB.GetSessionsForProject(Dash.CProject)).Wait();
             SessionsLB.Items.Add(String.Format("{0, 17} | {1, 17}", "Start", "End"));

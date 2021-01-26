@@ -33,6 +33,8 @@ namespace UPBProjekt1
             InitializeComponent();
             Editor = form;
 
+            (Editor.Dash.CSettings.DarkMode ? Const.Dark : Const.Light).ApplyTo(this);
+
             Task.Run(async () =>
             {
                 Archives = await App.DB.GetArchivesForUser(Editor.Dash.CUser);
