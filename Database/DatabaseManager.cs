@@ -155,7 +155,8 @@ namespace Database
 
             using (var com = user.UpdateCommand(conn))
             {
-                com.Parameters.AddWithValue("newpass", newpass);
+                if (newpass != "") com.Parameters.AddWithValue("newpass", newpass);
+                else com.Parameters.AddWithValue("newpass", DBNull.Value);
                 com.Parameters.AddWithValue("passchk", passchk);
 
                 var r = com.ExecuteReader();

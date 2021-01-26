@@ -158,8 +158,9 @@ namespace Database
         /// <returns></returns>
         public override NpgsqlCommand UpdateCommand(NpgsqlConnection conn)
         {
-            string command = "SELECT * FROM update_user(@id, @name, @surname, @uname, @email, @address, @postid, @newpass, @passchk);";
+            string command = "SELECT * FROM update_user(@id, @name, @surname, @uname, @email, @address, @postid, @passchk, @newpass);";
             var com = new NpgsqlCommand(command, conn);
+            com.Parameters.AddWithValue("id", ID);
             com.Parameters.AddWithValue("name", Name);
             com.Parameters.AddWithValue("surname", Surname);
             com.Parameters.AddWithValue("uname", Username);
