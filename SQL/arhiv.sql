@@ -1,0 +1,24 @@
+CREATE FUNCTION get_arhiv(a_uid INT)
+RETURNS SETOF arhiv AS
+$$
+BEGIN
+	RETURN QUERY
+	SELECT * FROM arhiv WHERE original_id = a_uid
+	ORDER BY datum DESC;
+END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE FUNCTION delete_arhiv(a_id INT)
+RETURNS BOOL AS
+$$
+DECLARE
+	res INT;
+BEGIN
+	DELETE FROM arhiv
+	WHERE id = a_id
+	RETURNING * INTO res;
+	
+	IF res > 0 THEN RETURN TRUE;
+	ELSE RETURN FALSE; END IF;
+END;
+$$ LANGUAGE 'plpgsql';
