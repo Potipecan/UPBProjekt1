@@ -30,7 +30,7 @@ $$ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER trig_make_archive
 AFTER INSERT OR UPDATE
-ON uporabniki FOR EACH STATEMENT
+ON uporabniki FOR EACH ROW
 EXECUTE PROCEDURE make_archive();
 
 CREATE OR REPLACE FUNCTION count_projects()
@@ -58,7 +58,7 @@ $$ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER trig_count_projects
 AFTER INSERT OR UPDATE OR DELETE
-ON projekti FOR EACH STATEMENT
+ON projekti FOR EACH ROW
 EXECUTE PROCEDURE count_projects();
 
 CREATE OR REPLACE FUNCTION count_hours()
@@ -71,11 +71,11 @@ BEGIN
 	IF tg_op = 'DELETE' AND OLD.d_do IS NOT NULL
 	THEN 
 		pid := OLD.project_id;
-		h := -EXTRACT(epoch FROM OLD.d_do - OLD.d_od) / 3600.0;
+		h := (-EXTRACT(epoch FROM OLD.d_do - OLD.d_od))::decimal / 3600.0;
 	ELSE IF NEW.d_do IS NOT NULL
 	THEN
 		pid := NEW.project_id;
-		h := EXTRACT(epoch FROM NEW.d_do - OLD.d_od) / 3600.0;
+		h := (EXTRACT(epoch FROM NEW.d_do - OLD.d_od))::decimal / 3600.0;
 	END IF;
 	END IF;
 		
@@ -88,6 +88,6 @@ END;
 $$ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER trig_count_hours
-AFTER INSERT OR UPDATE
-ON delo FOR EACH STATEMENT
+AFTER INSERT OR UPDATE OR DELETE
+ON delo FOR EACH ROW
 EXECUTE PROCEDURE count_hours();

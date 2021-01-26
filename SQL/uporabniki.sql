@@ -62,7 +62,7 @@ END;
 $$ LANGUAGE 'plpgsql';
 
 -- urejanje uporabnika
-CREATE OR REPLACE FUNCTION update_user(
+CREATE FUNCTION update_user(
 	a_id INT,
 	a_ime VARCHAR(40),
 	a_priimek VARCHAR(40),
@@ -70,27 +70,22 @@ CREATE OR REPLACE FUNCTION update_user(
 	a_email VARCHAR(100),
 	a_naslov VARCHAR(100),
 	a_kraj_id INT,
-	a_pass_chk VARCHAR(255),
-	a_geslo VARCHAR(255) DEFAULT NULL
+	a_geslo VARCHAR(255),
+	a_pass_chk VARCHAR(255)
 )
 RETURNS SETOF uporabniki AS
 $$
 DECLARE
 	res uporabniki%ROWTYPE;
-	tgeslo VARCHAR(255);
 BEGIN
-	IF a_geslo IS NOT NULL THEN tgeslo := MD5(a_geslo);
-	ELSE SELECT INTO tgeslo geslo FROM uporabniki WHERE uime = a_uime AND geslo = MD5(a_pass_chk);
-	END IF;
-	
 	UPDATE uporabniki
 	SET ime = a_ime, 
 	priimek = a_priimek, 
-	u_ime = a_uime, 
+	uime = a_uime, 
 	email = a_email, 
 	naslov = a_naslov, 
 	kraj_id = a_kraj_id,
-	geslo = tgeslo
+	geslo = MD5(a_geslo)
 	WHERE id = a_id
 	AND geslo = MD5(a_pass_chk)
 	RETURNING * INTO res;
@@ -98,8 +93,6 @@ BEGIN
 	RETURN NEXT res;
 END;
 $$ LANGUAGE 'plpgsql';
-
-
 
 CREATE FUNCTION get_user_by_id(a_id INT)
 RETURNS SETOF uporabniki AS
