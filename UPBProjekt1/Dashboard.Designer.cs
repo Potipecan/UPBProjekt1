@@ -35,6 +35,7 @@ namespace UPBProjekt1
             this.UserInfoLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SessionCommentTB = new System.Windows.Forms.TextBox();
             this.SessionCommitButton = new System.Windows.Forms.Button();
             this.WorkSessionLabel = new System.Windows.Forms.Label();
             this.ProjectsLB = new System.Windows.Forms.ListBox();
@@ -53,7 +54,6 @@ namespace UPBProjekt1
             this.PositionTB = new System.Windows.Forms.TextBox();
             this.ClientTB = new System.Windows.Forms.TextBox();
             this.TitleTB = new System.Windows.Forms.TextBox();
-            this.SessionCommentTB = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -125,6 +125,14 @@ namespace UPBProjekt1
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Work session";
             // 
+            // SessionCommentTB
+            // 
+            this.SessionCommentTB.Location = new System.Drawing.Point(177, 72);
+            this.SessionCommentTB.Multiline = true;
+            this.SessionCommentTB.Name = "SessionCommentTB";
+            this.SessionCommentTB.Size = new System.Drawing.Size(213, 37);
+            this.SessionCommentTB.TabIndex = 2;
+            // 
             // SessionCommitButton
             // 
             this.SessionCommitButton.Location = new System.Drawing.Point(6, 72);
@@ -187,6 +195,7 @@ namespace UPBProjekt1
             this.BrowseSessionsBTN.TabIndex = 13;
             this.BrowseSessionsBTN.Text = "Browse sessions";
             this.BrowseSessionsBTN.UseVisualStyleBackColor = true;
+            this.BrowseSessionsBTN.Click += new System.EventHandler(this.BrowseSessionsBTN_Click);
             // 
             // ClearButton
             // 
@@ -300,14 +309,6 @@ namespace UPBProjekt1
             this.TitleTB.Name = "TitleTB";
             this.TitleTB.Size = new System.Drawing.Size(219, 22);
             this.TitleTB.TabIndex = 0;
-            // 
-            // SessionCommentTB
-            // 
-            this.SessionCommentTB.Location = new System.Drawing.Point(177, 72);
-            this.SessionCommentTB.Multiline = true;
-            this.SessionCommentTB.Name = "SessionCommentTB";
-            this.SessionCommentTB.Size = new System.Drawing.Size(213, 37);
-            this.SessionCommentTB.TabIndex = 2;
             // 
             // Dashboard
             // 

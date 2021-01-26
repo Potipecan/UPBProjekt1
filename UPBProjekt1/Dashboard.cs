@@ -146,12 +146,12 @@ namespace UPBProjekt1
         private void EditProfileButton_Click(object sender, EventArgs e)
         {
             var ef = new EditUserForm(this);
-            ef.FormClosed += Ef_FormClosed;
+            ef.FormClosed += ChildWindowClosed;
             Enabled = false;
             ef.Show();
         }
 
-        private void Ef_FormClosed(object sender, FormClosedEventArgs e)
+        private void ChildWindowClosed(object sender, FormClosedEventArgs e)
         {
             Enabled = true;
         }
@@ -238,6 +238,14 @@ namespace UPBProjekt1
                     else MessageBox.Show("Error! Session could not be closed.");
                 }
             }
+        }
+
+        private void BrowseSessionsBTN_Click(object sender, EventArgs e)
+        {
+            var sb = new SessionBrowser(this);
+            sb.FormClosed += ChildWindowClosed;
+            Enabled = false;
+            sb.Show();
         }
     }
 }
