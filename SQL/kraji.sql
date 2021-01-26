@@ -29,7 +29,7 @@ DECLARE
 	res kraji%ROWTYPE;
 BEGIN
 	UPDATE kraji
-	SET ime = a_ime, posta = a_posta, kratica = a_kr
+	SET ime = a_ime, posta = a_koda, kratica = a_kr
 	WHERE id = a_id
 	RETURNING * INTO res;
 	
