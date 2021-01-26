@@ -59,6 +59,7 @@ namespace UPBProjekt1
 
         public void UpdateFields(User u = null)
         {
+            PostCB.Items.Clear();
             App.POs.ForEach(r => PostCB.Items.Add($"{r.Code} - {r.Name}"));
             if(u == null) u = Dash.CUser;            
 
@@ -160,8 +161,8 @@ namespace UPBProjekt1
                     var settings = new Settings(Dash.CSettings.ID, Dash.CSettings.UserID, DarkmodeChkBox.Checked, SetFontButton.Text);
                     settings = await App.DB.SetSettings(settings);
                     (settings.DarkMode ? Const.Dark : Const.Light).ApplyTo(Dash);
-                   
 
+                    Dash.CSettings = settings;
                 }
                 Close();
             }

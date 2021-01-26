@@ -207,7 +207,7 @@ namespace Database
             string command = "SELECT * FROM set_settings(@id, @darkmode, @font);";
             var com = new NpgsqlCommand(command, conn);
             com.Parameters.AddWithValue("id", ID);
-            com.Parameters.AddWithValue("darkmode", DarkMode);
+            com.Parameters.AddWithValue("darkmode", NpgsqlDbType.Boolean, DarkMode);
             com.Parameters.AddWithValue("font", Font);
 
             return com;

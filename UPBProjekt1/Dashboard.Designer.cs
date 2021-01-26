@@ -54,6 +54,7 @@ namespace UPBProjekt1
             this.PositionTB = new System.Windows.Forms.TextBox();
             this.ClientTB = new System.Windows.Forms.TextBox();
             this.TitleTB = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -115,19 +116,20 @@ namespace UPBProjekt1
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.SessionCommentTB);
             this.groupBox2.Controls.Add(this.SessionCommitButton);
             this.groupBox2.Controls.Add(this.WorkSessionLabel);
             this.groupBox2.Location = new System.Drawing.Point(392, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(597, 120);
+            this.groupBox2.Size = new System.Drawing.Size(702, 120);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Work session";
             // 
             // SessionCommentTB
             // 
-            this.SessionCommentTB.Location = new System.Drawing.Point(177, 72);
+            this.SessionCommentTB.Location = new System.Drawing.Point(315, 72);
             this.SessionCommentTB.Multiline = true;
             this.SessionCommentTB.Name = "SessionCommentTB";
             this.SessionCommentTB.Size = new System.Drawing.Size(213, 37);
@@ -161,7 +163,7 @@ namespace UPBProjekt1
             this.ProjectsLB.ItemHeight = 15;
             this.ProjectsLB.Location = new System.Drawing.Point(393, 139);
             this.ProjectsLB.Name = "ProjectsLB";
-            this.ProjectsLB.Size = new System.Drawing.Size(596, 424);
+            this.ProjectsLB.Size = new System.Drawing.Size(701, 424);
             this.ProjectsLB.TabIndex = 2;
             this.ProjectsLB.SelectedIndexChanged += new System.EventHandler(this.ProjectsLB_SelectedIndexChanged);
             // 
@@ -311,11 +313,20 @@ namespace UPBProjekt1
             this.TitleTB.Size = new System.Drawing.Size(219, 22);
             this.TitleTB.TabIndex = 0;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(186, 75);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(123, 17);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Session comment:";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 580);
+            this.ClientSize = new System.Drawing.Size(1106, 580);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.ProjectsLB);
             this.Controls.Add(this.groupBox2);
@@ -359,5 +370,6 @@ namespace UPBProjekt1
         private System.Windows.Forms.TextBox ClientTB;
         private System.Windows.Forms.TextBox TitleTB;
         private System.Windows.Forms.TextBox SessionCommentTB;
+        private System.Windows.Forms.Label label6;
     }
 }

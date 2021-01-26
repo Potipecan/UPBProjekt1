@@ -151,9 +151,11 @@ namespace UPBProjekt1
             ef.Show();
         }
 
-        private void ChildWindowClosed(object sender, FormClosedEventArgs e)
+        private async void ChildWindowClosed(object sender, FormClosedEventArgs e)
         {
             Enabled = true;
+            CSettings = await App.DB.GetSettingForUser(CUser);
+            WindowRefresh();
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -172,7 +174,10 @@ namespace UPBProjekt1
                     pro = await App.DB.AddProject(pro);
                     CProjects.Add(pro);
 
+                    Enabled = false;
                     CUser = await App.DB.GetUserByID(CUser.ID);
+                    Enabled = true;
+
                     RefreshProjectsLB();
                     ProjectsLB.SelectedIndex = CProjects.FindIndex(p => p.ID == pro.ID) + 1;
                 }
@@ -183,7 +188,9 @@ namespace UPBProjekt1
                     if (pro != null)
                     {
                         MessageBox.Show("Success!");
+                        Enabled = false;
                         CUser = await App.DB.GetUserByID(CUser.ID);
+                        Enabled = true;
                     }
                     else MessageBox.Show("Action failed");
                 }
@@ -206,7 +213,9 @@ namespace UPBProjekt1
             if (await App.DB.DeleteProject(CProject))
             {
                 MessageBox.Show("Project succesfully deleted.");
+                Enabled = false;
                 await GetProjects();
+                Enabled = true;
                 CSession = await App.DB.GetCurrentSession(CUser);
             }
             else MessageBox.Show("Project deletion failed.");
@@ -219,7 +228,9 @@ namespace UPBProjekt1
                 if (CProject != null)
                 {
                     var ses = new Session(DateTime.Now, DateTime.MinValue, CProject.ID, SessionCommentTB.Text);
+                    Enabled = false;
                     ses = await App.DB.NewSession(ses);
+                    Enabled = true;
                     if (ses != null)
                     {
                         CSession = ses;
@@ -231,7 +242,9 @@ namespace UPBProjekt1
             else
             {
                 var ses = new Session(CSession.From, DateTime.Now, CSession.ProjectID, CSession.Comment, CSession.ID);
+                Enabled = false;
                 ses = await App.DB.EditSession(ses);
+                Enabled = true;
                 if (ses != null)
                 {
                     CSession = null;
