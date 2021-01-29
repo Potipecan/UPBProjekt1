@@ -22,7 +22,7 @@ namespace UPBProjekt1
                 if(value != null)
                 {
                     var dur = SSession.To - SSession.From;
-                    InfoLabel.Text = String.Format("{0:D}\n{1:D}\n{2}", SSession.From, SSession.To, dur);
+                    InfoLabel.Text = String.Format("{0:D}\n{1:D}\n{2:hh}", SSession.From, SSession.To, dur);
                     CommentLabel.Text = SSession.Comment;
                     DeleteSessionButton.Enabled = true;
                 }

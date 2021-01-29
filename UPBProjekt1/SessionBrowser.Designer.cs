@@ -41,12 +41,12 @@ namespace UPBProjekt1
             // 
             // SessionsLB
             // 
-            this.SessionsLB.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SessionsLB.Dock = System.Windows.Forms.DockStyle.Right;
             this.SessionsLB.FormattingEnabled = true;
             this.SessionsLB.ItemHeight = 16;
-            this.SessionsLB.Location = new System.Drawing.Point(0, 0);
+            this.SessionsLB.Location = new System.Drawing.Point(349, 0);
             this.SessionsLB.Name = "SessionsLB";
-            this.SessionsLB.Size = new System.Drawing.Size(452, 450);
+            this.SessionsLB.Size = new System.Drawing.Size(678, 434);
             this.SessionsLB.TabIndex = 0;
             this.SessionsLB.SelectedIndexChanged += new System.EventHandler(this.SessionsLB_SelectedIndexChanged);
             // 
@@ -55,7 +55,7 @@ namespace UPBProjekt1
             this.SessionInfoGB.Controls.Add(this.CommentLabel);
             this.SessionInfoGB.Controls.Add(this.InfoLabel);
             this.SessionInfoGB.Controls.Add(this.label1);
-            this.SessionInfoGB.Location = new System.Drawing.Point(458, 48);
+            this.SessionInfoGB.Location = new System.Drawing.Point(12, 48);
             this.SessionInfoGB.Name = "SessionInfoGB";
             this.SessionInfoGB.Size = new System.Drawing.Size(330, 194);
             this.SessionInfoGB.TabIndex = 1;
@@ -92,7 +92,7 @@ namespace UPBProjekt1
             // 
             this.ProjectInfoLabel.AutoSize = true;
             this.ProjectInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProjectInfoLabel.Location = new System.Drawing.Point(458, 9);
+            this.ProjectInfoLabel.Location = new System.Drawing.Point(12, 9);
             this.ProjectInfoLabel.Name = "ProjectInfoLabel";
             this.ProjectInfoLabel.Size = new System.Drawing.Size(79, 29);
             this.ProjectInfoLabel.TabIndex = 2;
@@ -102,7 +102,7 @@ namespace UPBProjekt1
             // DeleteSessionButton
             // 
             this.DeleteSessionButton.Enabled = false;
-            this.DeleteSessionButton.Location = new System.Drawing.Point(461, 248);
+            this.DeleteSessionButton.Location = new System.Drawing.Point(15, 248);
             this.DeleteSessionButton.Name = "DeleteSessionButton";
             this.DeleteSessionButton.Size = new System.Drawing.Size(125, 33);
             this.DeleteSessionButton.TabIndex = 3;
@@ -114,13 +114,13 @@ namespace UPBProjekt1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1027, 434);
             this.Controls.Add(this.DeleteSessionButton);
             this.Controls.Add(this.ProjectInfoLabel);
             this.Controls.Add(this.SessionInfoGB);
             this.Controls.Add(this.SessionsLB);
             this.Name = "SessionBrowser";
-            this.Text = "SessionBrowser";
+            this.Text = "Session Browser";
             this.SessionInfoGB.ResumeLayout(false);
             this.SessionInfoGB.PerformLayout();
             this.ResumeLayout(false);
