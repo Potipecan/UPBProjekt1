@@ -170,7 +170,7 @@ namespace UPBProjekt1
             {
                 if (CProject == null) // add new Project
                 {
-                    var pro = new Project(TitleTB.Text, PositionTB.Text, ActiveChkB.Checked, ClientTB.Text, 0, CUser.ID);
+                    var pro = new Project(TitleTB.Text, PositionTB.Text, ActiveChkB.Checked, ClientTB.Text, 0, CUser.ID, DescTB.Text);
                     pro = await App.DB.AddProject(pro);
                     CProjects.Add(pro);
 
@@ -183,7 +183,7 @@ namespace UPBProjekt1
                 }
                 else // edit project
                 {
-                    var pro = new Project(CProject.Title, CProject.Position, CProject.Active, CProject.Client, CProject.Hours, CProject.UserID, CProject.Description, CProject.ID);
+                    var pro = new Project(TitleTB.Text, PositionTB.Text, ActiveChkB.Checked, ClientTB.Text, 0, CProject.ID, DescTB.Text, CProject.ID);
                     pro = await App.DB.EditProject(pro);
                     if (pro != null)
                     {
