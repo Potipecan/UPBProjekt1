@@ -66,18 +66,18 @@ RETURNS TRIGGER AS
 $$
 DECLARE
 	pid INT;
-	h INT;
+	h REAL;
 BEGIN
 	IF tg_op = 'DELETE' AND OLD.d_do IS NOT NULL
 	THEN 
-		pid := OLD.project_id;
-		h := (-EXTRACT(epoch FROM OLD.d_do - OLD.d_od))::decimal / 3600.0;
-	ELSE IF NEW.d_do IS NOT NULL
+		pid := OLD.projekt_id;
+		h := (-EXTRACT(epoch FROM OLD.d_do - OLD.d_od))::real / 3600.0::real;
+	ELSIF NEW.d_do IS NOT NULL
 	THEN
-		pid := NEW.project_id;
-		h := (EXTRACT(epoch FROM NEW.d_do - OLD.d_od))::decimal / 3600.0;
+		pid := NEW.projekt_id;
+		h := (EXTRACT(epoch FROM NEW.d_do - OLD.d_od))::real / 3600.0::real;
 	END IF;
-	END IF;
+	--END IF;
 		
 	UPDATE projekti
 	SET st_ur = st_ur + h
