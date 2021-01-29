@@ -108,9 +108,10 @@ namespace UPBProjekt1
             d.Show();
         }
 
-        private void DashboardClosed(object sender, FormClosedEventArgs e)
+        private async void DashboardClosed(object sender, FormClosedEventArgs e)
         {
-            POs.Clear();
+            await UpdatePOs();
+            PostCB.Items.Clear();
             POs.ForEach(p => PostCB.Items.Add($"{p.Code} - {p.Name}"));
             Show();
         }

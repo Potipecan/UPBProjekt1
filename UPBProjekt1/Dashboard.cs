@@ -190,6 +190,7 @@ namespace UPBProjekt1
                         MessageBox.Show("Success!");
                         Enabled = false;
                         CUser = await App.DB.GetUserByID(CUser.ID);
+                        await GetProjects();
                         Enabled = true;
                     }
                     else MessageBox.Show("Action failed");
