@@ -264,7 +264,8 @@ namespace Database
             com.Parameters.AddWithValue("position", Position);
             com.Parameters.AddWithValue("client", Client);
             com.Parameters.AddWithValue("userid", UserID);
-            com.Parameters.AddWithValue("desc", Description);
+            if (Description != "") com.Parameters.AddWithValue("desc", Description);
+            else com.Parameters.AddWithValue("desc", DBNull.Value);
             com.Parameters.AddWithValue("active", Active);
 
             return com;
