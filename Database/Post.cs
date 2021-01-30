@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -206,11 +207,16 @@ namespace Database
         {
             string command = "SELECT * FROM set_settings(@id, @darkmode, @font);";
             var com = new NpgsqlCommand(command, conn);
-            com.Parameters.AddWithValue("id", ID);
+            com.Parameters.AddWithValue("id", UserID);
             com.Parameters.AddWithValue("darkmode", NpgsqlDbType.Boolean, DarkMode);
             com.Parameters.AddWithValue("font", Font);
 
             return com;
+        }
+
+        public Font GetFont()
+        {
+            return new FontConverter().ConvertFromInvariantString(Font) as Font;
         }
     }
 

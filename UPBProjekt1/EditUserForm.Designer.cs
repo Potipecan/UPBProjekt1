@@ -382,16 +382,17 @@ namespace UPBProjekt1
             this.SetFontButton.TabIndex = 27;
             this.SetFontButton.Text = "Set";
             this.SetFontButton.UseVisualStyleBackColor = true;
-            this.SetFontButton.Visible = false;
+            this.SetFontButton.Click += new System.EventHandler(this.SetFontButton_Click);
             // 
             // FontTB
             // 
+            this.FontTB.Enabled = false;
             this.FontTB.Location = new System.Drawing.Point(50, 21);
             this.FontTB.Name = "FontTB";
             this.FontTB.ReadOnly = true;
             this.FontTB.Size = new System.Drawing.Size(244, 22);
             this.FontTB.TabIndex = 26;
-            this.FontTB.Visible = false;
+            this.FontTB.TextChanged += new System.EventHandler(this.FontTB_TextChanged);
             // 
             // label13
             // 
@@ -401,7 +402,7 @@ namespace UPBProjekt1
             this.label13.Size = new System.Drawing.Size(36, 17);
             this.label13.TabIndex = 2;
             this.label13.Text = "Font";
-            this.label13.Visible = false;
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // DarkmodeChkBox
             // 
