@@ -132,7 +132,7 @@ namespace UPBProjekt1
             ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 4} | {4, 2}", "Title", "Client", "Positon", "Hours", "Status"));
             foreach (var p in CProjects)
             {
-                ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 5: F1} | {4, 2}", p.Title, p.Client, p.Position, p.Hours, p.Active ? "WIP" : "DONE"));
+                ProjectsLB.Items.Add(String.Format("{0,20} | {1, 15} | {2, 15} | {3, 5:F1} | {4, 2}", p.Title, p.Client, p.Position, p.Hours, p.Active ? "WIP" : "DONE"));
             }
         }
 

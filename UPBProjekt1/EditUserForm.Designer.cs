@@ -75,7 +75,7 @@ namespace UPBProjekt1
             // 
             // UserInfoGB
             // 
-            this.UserInfoGB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UserInfoGB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.UserInfoGB.Controls.Add(this.label9);
             this.UserInfoGB.Controls.Add(this.label8);
             this.UserInfoGB.Controls.Add(this.label7);
@@ -96,143 +96,148 @@ namespace UPBProjekt1
             this.UserInfoGB.Controls.Add(this.NameTB);
             this.UserInfoGB.Location = new System.Drawing.Point(12, 12);
             this.UserInfoGB.Name = "UserInfoGB";
-            this.UserInfoGB.Size = new System.Drawing.Size(372, 290);
+            this.UserInfoGB.Size = new System.Drawing.Size(401, 290);
             this.UserInfoGB.TabIndex = 0;
             this.UserInfoGB.TabStop = false;
             this.UserInfoGB.Text = "User info";
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label9.Location = new System.Drawing.Point(76, 250);
+            this.label9.Location = new System.Drawing.Point(80, 250);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 17);
+            this.label9.Size = new System.Drawing.Size(92, 17);
             this.label9.TabIndex = 17;
             this.label9.Text = "Password*:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label8.Location = new System.Drawing.Point(6, 222);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(144, 17);
+            this.label8.Size = new System.Drawing.Size(166, 17);
             this.label8.TabIndex = 16;
             this.label8.Text = "New password check:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label7.Location = new System.Drawing.Point(47, 194);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 17);
+            this.label7.Size = new System.Drawing.Size(125, 17);
             this.label7.TabIndex = 15;
             this.label7.Text = "New password:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label6.Location = new System.Drawing.Point(105, 164);
+            this.label6.Location = new System.Drawing.Point(42, 164);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 17);
+            this.label6.Size = new System.Drawing.Size(130, 17);
             this.label6.TabIndex = 14;
-            this.label6.Text = "Post*:";
+            this.label6.Text = "Postal region*:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label5.Location = new System.Drawing.Point(81, 136);
+            this.label5.Location = new System.Drawing.Point(77, 136);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 17);
+            this.label5.Size = new System.Drawing.Size(95, 17);
             this.label5.TabIndex = 13;
             this.label5.Text = "Address*:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label4.Location = new System.Drawing.Point(99, 108);
+            this.label4.Location = new System.Drawing.Point(93, 108);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 17);
+            this.label4.Size = new System.Drawing.Size(79, 17);
             this.label4.TabIndex = 12;
             this.label4.Text = "Email*:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Location = new System.Drawing.Point(68, 80);
+            this.label3.Location = new System.Drawing.Point(80, 80);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 17);
+            this.label3.Size = new System.Drawing.Size(92, 17);
             this.label3.TabIndex = 11;
             this.label3.Text = "Username*:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label2.Location = new System.Drawing.Point(76, 52);
+            this.label2.Location = new System.Drawing.Point(83, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 17);
+            this.label2.Size = new System.Drawing.Size(89, 17);
             this.label2.TabIndex = 10;
             this.label2.Text = "Surname*:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label1.Location = new System.Drawing.Point(96, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 17);
+            this.label1.Size = new System.Drawing.Size(76, 17);
             this.label1.TabIndex = 9;
             this.label1.Text = "Name*:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PassTB
             // 
-            this.PassTB.Location = new System.Drawing.Point(156, 247);
+            this.PassTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PassTB.Location = new System.Drawing.Point(188, 247);
             this.PassTB.Name = "PassTB";
             this.PassTB.Size = new System.Drawing.Size(207, 22);
             this.PassTB.TabIndex = 8;
             // 
             // NewPassChkTB
             // 
-            this.NewPassChkTB.Location = new System.Drawing.Point(156, 219);
+            this.NewPassChkTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NewPassChkTB.Location = new System.Drawing.Point(188, 219);
             this.NewPassChkTB.Name = "NewPassChkTB";
             this.NewPassChkTB.Size = new System.Drawing.Size(207, 22);
             this.NewPassChkTB.TabIndex = 7;
             // 
             // NewPassTB
             // 
-            this.NewPassTB.Location = new System.Drawing.Point(156, 191);
+            this.NewPassTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NewPassTB.Location = new System.Drawing.Point(188, 191);
             this.NewPassTB.Name = "NewPassTB";
             this.NewPassTB.Size = new System.Drawing.Size(207, 22);
             this.NewPassTB.TabIndex = 6;
             // 
             // PostCB
             // 
+            this.PostCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PostCB.FormattingEnabled = true;
-            this.PostCB.Location = new System.Drawing.Point(156, 161);
+            this.PostCB.Location = new System.Drawing.Point(188, 161);
             this.PostCB.Name = "PostCB";
             this.PostCB.Size = new System.Drawing.Size(207, 24);
             this.PostCB.TabIndex = 5;
@@ -240,41 +245,48 @@ namespace UPBProjekt1
             // 
             // AddressTB
             // 
-            this.AddressTB.Location = new System.Drawing.Point(156, 133);
+            this.AddressTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddressTB.Location = new System.Drawing.Point(188, 133);
             this.AddressTB.Name = "AddressTB";
             this.AddressTB.Size = new System.Drawing.Size(207, 22);
             this.AddressTB.TabIndex = 4;
             // 
             // EmailTB
             // 
-            this.EmailTB.Location = new System.Drawing.Point(156, 105);
+            this.EmailTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.EmailTB.Location = new System.Drawing.Point(188, 105);
             this.EmailTB.Name = "EmailTB";
             this.EmailTB.Size = new System.Drawing.Size(207, 22);
             this.EmailTB.TabIndex = 3;
             // 
             // UsernameTB
             // 
-            this.UsernameTB.Location = new System.Drawing.Point(156, 77);
+            this.UsernameTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UsernameTB.Location = new System.Drawing.Point(188, 77);
             this.UsernameTB.Name = "UsernameTB";
             this.UsernameTB.Size = new System.Drawing.Size(207, 22);
             this.UsernameTB.TabIndex = 2;
             // 
             // SurnameTB
             // 
-            this.SurnameTB.Location = new System.Drawing.Point(156, 49);
+            this.SurnameTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SurnameTB.Location = new System.Drawing.Point(188, 49);
             this.SurnameTB.Name = "SurnameTB";
             this.SurnameTB.Size = new System.Drawing.Size(207, 22);
             this.SurnameTB.TabIndex = 1;
             // 
             // NameTB
             // 
-            this.NameTB.Location = new System.Drawing.Point(156, 21);
+            this.NameTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NameTB.Location = new System.Drawing.Point(188, 21);
             this.NameTB.Name = "NameTB";
             this.NameTB.Size = new System.Drawing.Size(207, 22);
             this.NameTB.TabIndex = 0;
             // 
             // PostGB
             // 
+            this.PostGB.AutoSize = true;
+            this.PostGB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PostGB.Controls.Add(this.PostDeleteButton);
             this.PostGB.Controls.Add(this.PostCancelButton);
             this.PostGB.Controls.Add(this.PostCommitButton);
@@ -284,12 +296,12 @@ namespace UPBProjekt1
             this.PostGB.Controls.Add(this.PostAbbrTB);
             this.PostGB.Controls.Add(this.PostCodeTB);
             this.PostGB.Controls.Add(this.PostNameTB);
-            this.PostGB.Location = new System.Drawing.Point(390, 12);
+            this.PostGB.Location = new System.Drawing.Point(419, 12);
             this.PostGB.Name = "PostGB";
-            this.PostGB.Size = new System.Drawing.Size(398, 165);
+            this.PostGB.Size = new System.Drawing.Size(419, 174);
             this.PostGB.TabIndex = 18;
             this.PostGB.TabStop = false;
-            this.PostGB.Text = "Posts";
+            this.PostGB.Text = "Postal region";
             // 
             // PostDeleteButton
             // 
@@ -324,64 +336,68 @@ namespace UPBProjekt1
             // 
             // label12
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 80);
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.Location = new System.Drawing.Point(19, 80);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(122, 17);
+            this.label12.Size = new System.Drawing.Size(144, 17);
             this.label12.TabIndex = 23;
             this.label12.Text = "Post abbreviation:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(48, 52);
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.Location = new System.Drawing.Point(61, 52);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(80, 17);
+            this.label11.Size = new System.Drawing.Size(102, 17);
             this.label11.TabIndex = 22;
             this.label11.Text = "Post code*:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(44, 24);
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.Location = new System.Drawing.Point(57, 24);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(84, 17);
+            this.label10.Size = new System.Drawing.Size(106, 17);
             this.label10.TabIndex = 21;
             this.label10.Text = "Post name*:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PostAbbrTB
             // 
-            this.PostAbbrTB.Location = new System.Drawing.Point(134, 77);
+            this.PostAbbrTB.Location = new System.Drawing.Point(169, 77);
             this.PostAbbrTB.Name = "PostAbbrTB";
             this.PostAbbrTB.Size = new System.Drawing.Size(244, 22);
             this.PostAbbrTB.TabIndex = 20;
             // 
             // PostCodeTB
             // 
-            this.PostCodeTB.Location = new System.Drawing.Point(134, 49);
+            this.PostCodeTB.Location = new System.Drawing.Point(169, 49);
             this.PostCodeTB.Name = "PostCodeTB";
             this.PostCodeTB.Size = new System.Drawing.Size(244, 22);
             this.PostCodeTB.TabIndex = 19;
             // 
             // PostNameTB
             // 
-            this.PostNameTB.Location = new System.Drawing.Point(134, 21);
+            this.PostNameTB.Location = new System.Drawing.Point(169, 21);
             this.PostNameTB.Name = "PostNameTB";
             this.PostNameTB.Size = new System.Drawing.Size(244, 22);
             this.PostNameTB.TabIndex = 18;
             // 
             // SettingsGB
             // 
+            this.SettingsGB.AutoSize = true;
             this.SettingsGB.Controls.Add(this.SetFontButton);
             this.SettingsGB.Controls.Add(this.FontTB);
             this.SettingsGB.Controls.Add(this.label13);
             this.SettingsGB.Controls.Add(this.DarkmodeChkBox);
-            this.SettingsGB.Location = new System.Drawing.Point(391, 184);
+            this.SettingsGB.Location = new System.Drawing.Point(419, 188);
             this.SettingsGB.Name = "SettingsGB";
-            this.SettingsGB.Size = new System.Drawing.Size(397, 118);
+            this.SettingsGB.Size = new System.Drawing.Size(397, 91);
             this.SettingsGB.TabIndex = 19;
             this.SettingsGB.TabStop = false;
             this.SettingsGB.Text = "UI Settings";
@@ -421,7 +437,7 @@ namespace UPBProjekt1
             // 
             this.DarkmodeChkBox.AutoSize = true;
             this.DarkmodeChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.DarkmodeChkBox.Location = new System.Drawing.Point(50, 49);
+            this.DarkmodeChkBox.Location = new System.Drawing.Point(9, 49);
             this.DarkmodeChkBox.Name = "DarkmodeChkBox";
             this.DarkmodeChkBox.Size = new System.Drawing.Size(99, 21);
             this.DarkmodeChkBox.TabIndex = 1;
@@ -472,7 +488,9 @@ namespace UPBProjekt1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1017, 450);
             this.Controls.Add(this.BrowseArchiveButton);
             this.Controls.Add(this.DeleteAccButton);
             this.Controls.Add(this.EditCancelButton);
@@ -489,6 +507,7 @@ namespace UPBProjekt1
             this.SettingsGB.ResumeLayout(false);
             this.SettingsGB.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
