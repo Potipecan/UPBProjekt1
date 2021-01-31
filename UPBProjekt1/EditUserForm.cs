@@ -82,6 +82,7 @@ namespace UPBProjekt1
 
             (Dash.CSettings.DarkMode ? Const.Dark : Const.Light).ApplyTo(this);
             Font = Dash.CSettings.GetFont();
+            DarkmodeChkBox.Checked = dash.CSettings.DarkMode;
 
             UpdateFields();
         }
@@ -179,7 +180,6 @@ namespace UPBProjekt1
                 {
 
                     var settings = new Settings(Dash.CSettings.ID, Dash.CSettings.UserID, DarkmodeChkBox.Checked, FontTB.Text);
-                    Debug.WriteLine(Dash.CSettings.ToString());
                     settings = await App.DB.SetSettings(settings);
                     (settings.DarkMode ? Const.Dark : Const.Light).ApplyTo(Dash);
 
