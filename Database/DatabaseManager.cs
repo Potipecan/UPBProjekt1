@@ -127,7 +127,7 @@ namespace Database
 
         public async Task<User> RegisterUser(User newUser, string pass)
         {
-            User res;
+            User res = null;
 
             await conn.OpenAsync();
             string command = $"SELECT * FROM register_user(@name, @surname, @uname, @email, @address, @postid, @pass)";
@@ -135,12 +135,20 @@ namespace Database
             {
                 com.Parameters.AddWithValue("pass", NpgsqlDbType.Varchar, pass);
 
-                var r = await com.ExecuteReaderAsync();
-                if (await r.ReadAsync())
+                try
                 {
-                    res = new User(r);
+                    var r = await com.ExecuteReaderAsync();
+                    if (await r.ReadAsync())
+                    {
+                        res = new User(r);
+                    }
                 }
-                else res = null;
+                catch (NpgsqlException ex)
+                {
+                    com.Dispose();
+                    await conn.CloseAsync();
+                    throw ex;
+                }                
             }
 
             await conn.CloseAsync();
@@ -159,10 +167,20 @@ namespace Database
                 else com.Parameters.AddWithValue("newpass", DBNull.Value);
                 com.Parameters.AddWithValue("passchk", passchk);
 
-                var r = com.ExecuteReader();
-                if (await r.ReadAsync()) res = new User(r);
-
-                com.Dispose();
+                try
+                {
+                    var r = await com.ExecuteReaderAsync();
+                    if (await r.ReadAsync())
+                    {
+                        res = new User(r);
+                    }
+                }
+                catch (NpgsqlException ex)
+                {
+                    com.Dispose();
+                    await conn.CloseAsync();
+                    throw ex;
+                }
             }
             await conn.CloseAsync();
 
