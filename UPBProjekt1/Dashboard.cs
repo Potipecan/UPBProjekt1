@@ -94,6 +94,8 @@ namespace UPBProjekt1
                 CSession = await App.DB.GetCurrentSession(CUser);
             }).Wait();
 
+            Font = CSettings.GetFont();
+
             WindowRefresh();
         }
 
@@ -259,10 +261,14 @@ namespace UPBProjekt1
 
         private void BrowseSessionsBTN_Click(object sender, EventArgs e)
         {
-            var sb = new SessionBrowser(this);
-            sb.FormClosed += ChildWindowClosed;
-            Enabled = false;
-            sb.Show();
+            if (CSession != null)
+            {
+                var sb = new SessionBrowser(this);
+                sb.FormClosed += ChildWindowClosed;
+                Enabled = false;
+                sb.Show();
+            }
+            else MessageBox.Show("Select a session first.");
         }
     }
 }
