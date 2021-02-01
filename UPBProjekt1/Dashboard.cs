@@ -52,7 +52,7 @@ namespace UPBProjekt1
                     TitleTB.Text = "";
                     PositionTB.Text = "";
                     ClientTB.Text = "";
-                    ActiveChkB.Checked = false;
+                    ActiveChkB.Checked = true;
                     SessionCommitButton.Enabled = CSession != null;
                     CommitProjectButton.Text = "Add";
                 }
@@ -155,11 +155,16 @@ namespace UPBProjekt1
         private async void ChildWindowClosed(object sender, FormClosedEventArgs e)
         {
             Enabled = true;
-            if(sender.GetType() == typeof(EditUserForm))
+            var type = sender.GetType();
+            if(type == typeof(EditUserForm))
             {
                 CSettings = await App.DB.GetSettingForUser(CUser);
                 Font = CSettings.GetFont();
             }
+            else if(type == typeof(SessionBrowser))
+            {
+                await GetProjects();
+            } 
             WindowRefresh();
         }
 
