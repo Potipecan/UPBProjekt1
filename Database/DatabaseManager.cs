@@ -89,8 +89,10 @@ namespace Database
                     var r = await com.ExecuteReaderAsync();
                     if (await r.ReadAsync()) res = r.GetBoolean(0);
                 }
-                catch (Exception ex)
+                catch (NpgsqlException ex)
                 {
+                    com.Dispose();
+                    await conn.CloseAsync();
                     throw ex;
                 }
                 com.Dispose();
