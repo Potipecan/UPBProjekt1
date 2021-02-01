@@ -92,10 +92,6 @@ namespace UPBProjekt1
             }
             catch (NpgsqlException ex)
             {
-                //foreach(var k in ex.Data.Keys)
-                //{
-                //    Debug.WriteLine(k.ToString());
-                //}
                 if ((string)ex.Data["SqlState"] == "23505")
                 {
                     string message = "Unknown constraint violation!";
