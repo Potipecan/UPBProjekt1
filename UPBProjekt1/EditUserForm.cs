@@ -112,15 +112,17 @@ namespace UPBProjekt1
         {
             if (PostNameTB.Text != "" && PostCodeTB.Text != "")
             {
-                if (PostCB.SelectedIndex < 0)
+                if (PostCB.SelectedIndex < 0) // Add postal region
                 {
                     var reg = new Post(PostNameTB.Text, PostCodeTB.Text, PostAbbrTB.Text);
                     reg = await App.DB.AddPO(reg);
 
-                    PostCB.SelectedIndex = App.POs.FindIndex(r => r.ID == reg.ID);
+                    await App.UpdatePOs();
                     UpdateFields();
+                    PostCB.SelectedIndex = App.POs.FindIndex(r => r.ID == reg.ID);
+                
                 }
-                else
+                else // update postal region
                 {
                     var reg = new Post(PostNameTB.Text, PostCodeTB.Text, PostAbbrTB.Text, Post.ID);
                     reg = await App.DB.UpdatePO(reg);
@@ -223,6 +225,7 @@ namespace UPBProjekt1
             {
                 MessageBox.Show("Profile succesfully deleted");
                 Dash.Close();
+                Dispose();
             }
         }
 
