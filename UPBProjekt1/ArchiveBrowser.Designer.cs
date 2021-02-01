@@ -42,13 +42,13 @@ namespace UPBProjekt1
             this.ArchiveLB.ItemHeight = 15;
             this.ArchiveLB.Location = new System.Drawing.Point(0, 0);
             this.ArchiveLB.Name = "ArchiveLB";
-            this.ArchiveLB.Size = new System.Drawing.Size(1110, 450);
+            this.ArchiveLB.Size = new System.Drawing.Size(1296, 450);
             this.ArchiveLB.TabIndex = 0;
             this.ArchiveLB.SelectedIndexChanged += new System.EventHandler(this.ArchiveLB_SelectedIndexChanged);
             // 
             // LoadArchiveBTN
             // 
-            this.LoadArchiveBTN.Location = new System.Drawing.Point(1116, 12);
+            this.LoadArchiveBTN.Location = new System.Drawing.Point(1302, 12);
             this.LoadArchiveBTN.Name = "LoadArchiveBTN";
             this.LoadArchiveBTN.Size = new System.Drawing.Size(133, 43);
             this.LoadArchiveBTN.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace UPBProjekt1
             // 
             // DeleteArchiveBTN
             // 
-            this.DeleteArchiveBTN.Location = new System.Drawing.Point(1116, 61);
+            this.DeleteArchiveBTN.Location = new System.Drawing.Point(1302, 61);
             this.DeleteArchiveBTN.Name = "DeleteArchiveBTN";
             this.DeleteArchiveBTN.Size = new System.Drawing.Size(133, 43);
             this.DeleteArchiveBTN.TabIndex = 2;
@@ -70,7 +70,7 @@ namespace UPBProjekt1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 450);
+            this.ClientSize = new System.Drawing.Size(1447, 450);
             this.Controls.Add(this.DeleteArchiveBTN);
             this.Controls.Add(this.LoadArchiveBTN);
             this.Controls.Add(this.ArchiveLB);
