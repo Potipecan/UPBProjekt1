@@ -7,7 +7,8 @@ Omogoča prijavo uporabnika, dodajanje in urejanje projektov, dodajanje delovnih
 - dodajanje, urejanje, branje, brisanje krajev, <br>
 - dodajanje, urejanje, branje, brisanje projektov, <br>
 - branje, brisanje arhiva, <br>
-- branje, urejanje, brisanje delovnih sej <br>
+- dodajanje, branje, urejanje, brisanje delovnih sej, <br>
+- branje, urejanje nastavitev <br>
 
 #prožilci
 - ustvarjanje arhiva: Ko se uporabnikovi podatki (razen števila projektov) spremenijo, samodejno ustvari zapis v arhiv, <br>
