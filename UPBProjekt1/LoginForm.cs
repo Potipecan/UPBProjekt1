@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Database;
+using Npgsql;
 
 namespace UPBProjekt1
 {
@@ -84,8 +86,34 @@ namespace UPBProjekt1
             }
 
             var newUser = new User(NameTB.Text, SurnameTB.Text, UnameTB.Text, EmailTB.Text, AddressTB.Text, POs[PostCB.SelectedIndex].ID);
-            var user = await DB.RegisterUser(newUser, PassTB.Text);
-            ToDashboard(user);
+            try
+            {
+                newUser = await DB.RegisterUser(newUser, PassTB.Text);
+            }
+            catch (NpgsqlException ex)
+            {
+                //foreach(var k in ex.Data.Keys)
+                //{
+                //    Debug.WriteLine(k.ToString());
+                //}
+                if ((string)ex.Data["SqlState"] == "23505")
+                {
+                    string message = "Unknown constraint violation!";
+                    switch (ex.Data["ConstraintName"])
+                    {
+                        case "uime":
+                            message = "Registration failed!\nUsername already taken.";
+                            break;
+                        case "email":
+                            message = "Registration failed\nEmail already taken.";
+                            break;
+                    }
+                    MessageBox.Show(message);
+                    return;
+                }
+                else throw ex;
+            }
+            ToDashboard(newUser);
         }
 
         private void ToDashboard(User user)
