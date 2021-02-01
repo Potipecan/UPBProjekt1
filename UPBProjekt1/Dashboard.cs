@@ -164,6 +164,7 @@ namespace UPBProjekt1
             else if(type == typeof(SessionBrowser))
             {
                 await GetProjects();
+                CSession = await App.DB.GetCurrentSession(CUser);
             } 
             WindowRefresh();
         }

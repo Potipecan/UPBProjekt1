@@ -21,8 +21,10 @@ namespace UPBProjekt1
                 sSession = value;
                 if(value != null)
                 {
-                    var dur = SSession.To - SSession.From;
-                    InfoLabel.Text = String.Format("{0:D}\n{1:D}\n{2:hh':'mm':'ss}", SSession.From, SSession.To, dur);
+                    var dur = SSession.To != DateTime.MinValue ? (SSession.To - SSession.From).ToString("hh':'mm':'ss") : "--:--:--";
+                    InfoLabel.Text = String.Format("{0:D}\n{1}\n{2}", 
+                        SSession.From, SSession.To != DateTime.MinValue ? SSession.To.ToString("D") : "-", 
+                        dur);
                     CommentLabel.Text = SSession.Comment;
                     DeleteSessionButton.Enabled = true;
                 }
