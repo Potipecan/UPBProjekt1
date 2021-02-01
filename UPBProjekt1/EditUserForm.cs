@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Database;
+using Npgsql;
 
 namespace UPBProjekt1
 {
@@ -138,10 +139,25 @@ namespace UPBProjekt1
 
         private async void PostDeleteButton_Click(object sender, EventArgs e)
         {
-            var ok = MessageBox.Show("Post deletion!", "Warning! Action cannot be undone!\nAre you sure you want to proceed?", MessageBoxButtons.YesNo);
+            var ok = MessageBox.Show("Warning! Action cannot be undone!\nAre you sure you want to proceed?", "Postal region deletion!", MessageBoxButtons.YesNo);
             if (ok == DialogResult.Yes)
             {
-                if (await App.DB.DeletePO(Post))
+                bool x;
+                try
+                {
+                    x = await App.DB.DeletePO(Post);
+                }
+                catch (NpgsqlException ex)
+                {
+                    if((string)ex.Data["SqlState"] == "23503" && (string)ex.Data["ConstraintName"] == "fk_kraji")
+                    {
+                        MessageBox.Show("Cannot delete postal region because it's it has users.");
+                        return;
+                    }
+                    else throw ex;
+                }
+
+                if (x)
                 {
                     await App.UpdatePOs();
                     UpdateFields();
