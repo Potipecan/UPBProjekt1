@@ -187,6 +187,12 @@ namespace UPBProjekt1
                 MessageBox.Show("All fields marked with '*' are mandatory!");
                 return;
             }
+            if (NewPassTB.Text != "" && NewPassTB.Text != NewPassChkTB.Text)
+            {
+                MessageBox.Show("New passwords must match.");
+                return;
+            }
+
 
             var user = new User(NameTB.Text, SurnameTB.Text, UsernameTB.Text, EmailTB.Text, AddressTB.Text, Post.ID, id: Dash.CUser.ID);
             var res = await Dash.UpdateUser(user, NewPassTB.Text, PassTB.Text);
@@ -249,16 +255,6 @@ namespace UPBProjekt1
             {
                 Font = FontSelector.Font;
             }
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FontTB_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
