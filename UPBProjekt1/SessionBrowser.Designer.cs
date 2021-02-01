@@ -42,8 +42,9 @@ namespace UPBProjekt1
             // SessionsLB
             // 
             this.SessionsLB.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SessionsLB.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SessionsLB.FormattingEnabled = true;
-            this.SessionsLB.ItemHeight = 16;
+            this.SessionsLB.ItemHeight = 15;
             this.SessionsLB.Location = new System.Drawing.Point(349, 0);
             this.SessionsLB.Name = "SessionsLB";
             this.SessionsLB.Size = new System.Drawing.Size(678, 434);
@@ -76,7 +77,7 @@ namespace UPBProjekt1
             this.InfoLabel.Name = "InfoLabel";
             this.InfoLabel.Size = new System.Drawing.Size(0, 17);
             this.InfoLabel.TabIndex = 1;
-            this.InfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.InfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 

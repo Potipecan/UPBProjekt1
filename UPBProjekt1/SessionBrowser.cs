@@ -22,7 +22,7 @@ namespace UPBProjekt1
                 if(value != null)
                 {
                     var dur = SSession.To - SSession.From;
-                    InfoLabel.Text = String.Format("{0:D}\n{1:D}\n{2:hh}", SSession.From, SSession.To, dur);
+                    InfoLabel.Text = String.Format("{0:D}\n{1:D}\n{2:hh':'mm':'ss}", SSession.From, SSession.To, dur);
                     CommentLabel.Text = SSession.Comment;
                     DeleteSessionButton.Enabled = true;
                 }
@@ -46,7 +46,7 @@ namespace UPBProjekt1
 
             ProjectInfoLabel.Text = Dash.CProject.Title;
             Task.Run(async () => Sessions = await App.DB.GetSessionsForProject(Dash.CProject)).Wait();
-            SessionsLB.Items.Add(String.Format("{0, 17} | {1, 17}", "Start", "End"));
+            SessionsLB.Items.Add(String.Format("{0, 19} | {1, 19}", "Start", "End"));
             
             Sessions.ForEach(s => SessionsLB.Items.Add(String.Format("{0, 17:dd/MM/yy hh:mm:ss} | {1, 17}", s.From, s.To != DateTime.MinValue ? s.To.ToString("dd/MM/yy hh:mm:ss") : "--/--/-- --:--:--")));
         }
