@@ -96,9 +96,8 @@ namespace UPBProjekt1
             this.ProjectInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProjectInfoLabel.Location = new System.Drawing.Point(12, 9);
             this.ProjectInfoLabel.Name = "ProjectInfoLabel";
-            this.ProjectInfoLabel.Size = new System.Drawing.Size(79, 29);
+            this.ProjectInfoLabel.Size = new System.Drawing.Size(0, 29);
             this.ProjectInfoLabel.TabIndex = 2;
-            this.ProjectInfoLabel.Text = "label2";
             this.ProjectInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DeleteSessionButton
