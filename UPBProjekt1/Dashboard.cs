@@ -261,7 +261,7 @@ namespace UPBProjekt1
 
         private void BrowseSessionsBTN_Click(object sender, EventArgs e)
         {
-            if (CSession != null)
+            if (CProject != null)
             {
                 var sb = new SessionBrowser(this);
                 sb.FormClosed += ChildWindowClosed;
